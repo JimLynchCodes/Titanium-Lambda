@@ -1,8 +1,18 @@
 
 class StarWarsFunctions {
 
+  constructor() {
+
+  }
+
   getCharacterData() {
 
+    return new Promise( (resolve, reject) => {
+
+      resolve('DERP');
+
+
+    })
   }
 
   getMovieData() {
@@ -11,7 +21,10 @@ class StarWarsFunctions {
 
   buildFinalResponse() {
 
+    return "ok!"
   }
 
 
 }
+
+module.exports = StarWarsFunctions;
