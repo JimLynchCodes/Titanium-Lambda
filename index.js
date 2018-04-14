@@ -1,7 +1,15 @@
-'use strict';
+// 'use strict';
 
-const awsServerlessExpress = require('aws-serverless-express')
-const app = require('./app')
-const server = awsServerlessExpress.createServer(app)
+// const awsServerlessExpress = require('aws-serverless-express')
+// const app = require('./app')
+// const server = awsServerlessExpress.createServer(app)
 
-exports.handler = (event, context) => awsServerlessExpress.proxy(server, event, context);
+const StarWarsFunctions = require('./src/StarWarsFunctions');
+const swf = new StarWarsFunctions();
+
+exports.handler = (event, context) => {
+
+  console.log('event: ', event);
+  console.log('context: ', context);
+  return swf.buildFinalResponse();
+}
