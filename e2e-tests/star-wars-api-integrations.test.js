@@ -1,11 +1,12 @@
 'use strict';
 
-// const supertest = require('supertest');
-// const test = require('unit.js');
-// const app = require('../app.js');
-
-// const request = supertest(app);
-
+/**
+ *  @author Jim Lynch <jim@wisdomofjim.com>
+ *
+ *  This is an example of what I like to call "integration tests". They are similar to unit tests in that they aim to
+ *  verify the correct return values for individual functions tested in isolation. However, unlike unit tests which
+ *  have side effects such as external requests mocked, these tests allow the functions to call the external apis.
+ */
 var expect = require('chai').expect
 const StarWarsFunctions = require('./../src/StarWarsFunctions');
 
@@ -35,8 +36,14 @@ describe('StarWarsFunctions', function() {
 
       const swf = new StarWarsFunctions();
 
-      swf.getCharacterData().then( result => {
-        expect(result).to.equal('ok!');
+      swf.getCharacterData(1).then( result => {
+
+        return expect(result).to.deep.equal(
+          {
+            'eyeColor': 'blue',
+            'hairColor': 'blond',
+          }
+        );
       })
       // expect(StarWarsFunctions.buildFinalResponse()).to.equal('ok!');
 
