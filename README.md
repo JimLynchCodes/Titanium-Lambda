@@ -1,11 +1,37 @@
-Welcome to the AWS CodeStar sample web service
-==============================================
+# Jim's Codestar Enterprise Pipeline Starwars NodeJS Lambda Microservice
+
+Welcome! I, Jim Lynch, am in the interview process for an awesome position at a really cool startup company where i would potentially be the leader and pioneer of all things serverless! So, I got to thinking: If I were in the position where I was "Head of Serverless" for a company, what would my process look like for developing aws lambda functions _for real?_ What would be the most robust, battle-hardened way of automated testing, automatically deploying (and manual aproval-driven testing for prod), and juggling muliple deployment environments without going crazy? Well, I've found a really nice way to do all this with some awesome AWS services, and I think my ideal dev process would look something like this...
+
+
+## The CodeStar Dashboard
+
+Codestar Dashboard: https://console.aws.amazon.com/codestar/home?region=us-east-1#/projects/jims-cepsnlm/dashboard
+_(Note: You won't be able to acess the codestar dashboard unless specifically given permissions by Jim.)_
 
 This sample code helps get you started with a simple Express web service
 deployed by AWS CloudFormation to AWS Lambda and Amazon API Gateway.
 
-What's Here
------------
+## Why AWS?
+
+Here I'm using AWS CodePipeline, but the Jimbo pipeline is in a way independent of AWS.
+
+## "The Jimbo Pipeline"
+
+While CodePipeline is a configurable, flexible pipeline to which one can add or remove any number of steps, the Jimbo Pipeline is a specific set of steps that I follow like a recipe for new Lambda services.
+
+- Commit code to the git repository.
+- Code gets automatically picked up by AWS CodePipeline build server.
+- Run Unit tests.
+- Run "Local e2e tests"
+- build project
+- deploy to dev
+- run "true e2e tests" hitting dev environment
+- deploy to staging
+- run "true e2e tests" hitting dev environment
+- manually approve deployment from staging to prod
+- deploy to prod
+
+
 
 This sample includes:
 
