@@ -1,0 +1,4 @@
+# Intellij metadata files
+.idea
+
+node_modules

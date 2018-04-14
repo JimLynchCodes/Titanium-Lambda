@@ -13,6 +13,7 @@
         "supertest": "3.0.0"
     },
     "scripts": {
-        "test": "mocha --recursive tests"
+        "test": "mocha --recursive tests",
+        "e2e-test": "mocha --recursive e2e-tests"
     }
 }
