@@ -7,6 +7,7 @@ app.get('/', function(req, res) {
 
   console.log('got event!', req.events);
 
+  console.log('ok then');
   console.log('req', req.apiGateway.event)
 
   res.send({
