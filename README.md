@@ -3,8 +3,10 @@
 Welcome! I, Jim Lynch, am in the interview process for an awesome position at a really cool startup company where i would potentially be the leader and pioneer of all things serverless! So, I got to thinking: If I were in the position where I was "Head of Serverless" for a company, what would my process look like for developing aws lambda functions _for real?_ What would be the most robust, battle-hardened way of automated testing, automatically deploying (and manual aproval-driven testing for prod), and juggling muliple deployment environments without going crazy? Well, I've found a really nice way to do all this with some awesome AWS services, and I think my ideal dev process would look something like this...
 
 
+## Try the live api now!
 
-
+Try hitting the live endpoint via putting it in your browser address bar, ajax, curl, postman, or some other REST client!  
+`https://ax7ezyq21m.execute-api.us-east-1.amazonaws.com/Prod?character=1`
 
 
 
