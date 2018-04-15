@@ -6,9 +6,16 @@ Welcome! I, Jim Lynch, am in the interview process for an awesome position at a 
 ## Try the live api now!
 
 Try hitting the live endpoint via putting it in your browser address bar, ajax, curl, postman, or some other REST client!  
-`https://ax7ezyq21m.execute-api.us-east-1.amazonaws.com/Prod?character=1`
+
+https://ax7ezyq21m.execute-api.us-east-1.amazonaws.com/Prod?character=1
 
 
+## The Project on The Surface
+
+API that you hit passing in a query parameter, "character", It will then return a json object containing some data about a star wars character: their name, hair cookie, and eye color. The project is written in ES6 nodejs, and is meant to be deployed to aws lambda and run a REST endpoint or scheduled job. 
+
+## The Meta Project
+For me, this project was the result of me sitting down and saying, "if I was THE serverless guy for a Large enterprise and needed to create a process for how we should build robust, thoroughly tested, dependable lambda services, how would I do it?". Although I've used popular CI platforms like Team City, Jenkins, or Travis, I've found that maintaining the infrastructure for these can be a lot of work. I find the (relatively) new CI tools built into AWS to be unparalleled for development of lambda functions. 
 
 ## The CodeStar Dashboard
 
@@ -22,7 +29,7 @@ deployed by AWS CloudFormation to AWS Lambda and Amazon API Gateway.
 
 Here I'm using AWS CodePipeline, but the Jimbo pipeline is in a way independent of AWS.
 
-## "The Jimbo Pipeline"
+## Automatic setup with AWS CodePipeline
 
 While CodePipeline is a configurable, flexible pipeline to which one can add or remove any number of steps, the Jimbo Pipeline is a specific set of steps that I follow like a recipe for new Lambda services.
 
@@ -63,11 +70,16 @@ E2e, or "end-to-end" tests are to me referring to tests that actually call out t
 In order to do a full end to end test we'd want to call the lambda function witg input similar to a real invocation (either from a REST call, scheduled event, or some other trigger). In this example I'm using the supertest library too hoook into the express middleware and send fake calls to it as if they were real REST requests. When these are working properly it can givena rwql sense of confidence that the lambda function is working properly from start to finish.
 
 
+## BDD Tests
+Feature file
+
+
 ## Performance Tests
 
 When it comes to aws lambda functions, you can quantitatively measure the performane of every execution with two numbers: __memory used__ and __duration of function execution__. Measuring the performance of aws lambda functions is actually very easy since every execution of your aws lambda function will output these numbers in the cloudwatch logs (and in the aws lambda console if invoking the function from there).
 
-
+## Amazon X-ray Performance Analysis 
+With each executive of a lambda function you get the total number of milliseconds for which you were billed, but there's no insight into what what going on during that time. Amazon X-ray is a neat service that shows a visual timeline of what's happening during you function execution so you can we how much time the nodejs engine took to start up, how much time each of your functions take to complete, etc. Note that this protect is not currently at up to use aws x-ray, but it would take only a few lives if cute to add it. 
 
 
 
