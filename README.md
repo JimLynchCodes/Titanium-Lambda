@@ -41,7 +41,9 @@ While CodePipeline is a configurable, flexible pipeline to which one can add or 
 
 ## Unit Tests
 
-If you don't haev mocha installed global, please do that first:
+The unit tests are meant to test functions in isolation, mocking all side effects (in this case, the axios requests).
+
+If you don't have mocha installed global, please do that first:
 `npm i -g mocha`
 
 Then you can run the units tests like so:
