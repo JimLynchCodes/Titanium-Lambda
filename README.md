@@ -29,14 +29,14 @@ deployed by AWS CloudFormation to AWS Lambda and Amazon API Gateway.
 
 Here I'm using AWS CodePipeline, but the Jimbo pipeline is in a way independent of AWS.
 
-## Automatic setup with AWS CodePipeline
+## Easy DevOps AWS CodePipeline
 
 While CodePipeline is a configurable, flexible pipeline to which one can add or remove any number of steps, the Jimbo Pipeline is a specific set of steps that I follow like a recipe for new Lambda services.
 
 - Commit code to the git repository.
 - Code gets automatically picked up by AWS CodePipeline build server.
 - Run Unit tests.
-- Run "Local e2e tests"
+- run e2e tests
 - build project
 - deploy to dev
 - run "true e2e tests" hitting dev environment
@@ -67,7 +67,7 @@ E2e, or "end-to-end" tests are to me referring to tests that actually call out t
 
 
 ## E2e Tests
-In order to do a full end to end test we'd want to call the lambda function witg input similar to a real invocation (either from a REST call, scheduled event, or some other trigger). In this example I'm using the supertest library too hoook into the express middleware and send fake calls to it as if they were real REST requests. When these are working properly it can givena rwql sense of confidence that the lambda function is working properly from start to finish.
+In order to do a full end to end test we'd want to call the lambda function witg input similar to a real invocation (either from a REST call, scheduled event, or some other trigger). In this example I'm using the supertest library too hook into the express middleware and send fake calls to it as if they were real REST requests. When these are working properly it can givena rwql sense of confidence that the lambda function is working properly from start to finish.
 
 
 ## BDD Tests
@@ -83,17 +83,13 @@ With each executive of a lambda function you get the total number of millisecond
 
 
 
-This sample includes:
+## Included Files for AWS DevOps Pipeline
 
-* README.md - this file
 * buildspec.yml - this file is used by AWS CodeBuild to package your
   service for deployment to AWS Lambda
-* app.js - this file contains the sample Node.js code for the web service
-* index.js - this file contains the AWS Lambda handler code
 * template.yml - this file contains the AWS Serverless Application Model (AWS SAM) used
   by AWS CloudFormation to deploy your service to AWS Lambda and Amazon API
   Gateway.
-* tests/ - this directory contains unit tests for your application
 
 
 What Do I Do Next?
