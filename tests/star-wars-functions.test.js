@@ -8,7 +8,7 @@ describe('star-wars-functions', function () {
 
   describe('getMovieData', () => {
 
-    it('should should return an object with key "release date" formatted like, "May 15, 2018".',
+    xit('should should return an object with key "release date" formatted like, "May 15, 2018".',
       () => {
       // const swf = new StarWarsFunctions();
       // expect(swf.buildFinalResponse()).to.equal('ok!');
@@ -24,7 +24,7 @@ describe('star-wars-functions', function () {
   describe('getCharacterData', () => {
 
 
-    it('should should return an object with keys "hairColor" and "eyeColor" containing values from the axios response, ',
+    xit('should should return an object with keys "hairColor" and "eyeColor" containing values from the axios response, ',
       () => {
     const swf = new StarWarsFunctions();
 

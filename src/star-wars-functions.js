@@ -1,16 +1,43 @@
 'use strict';
 
 const axios = require('axios');
-
+const errorResponse = {'error': 'Please pass query parameter "character" with a value 0 - 10.'};
 class StarWarsFunctions {
 
   constructor() {
     this.axios = axios;
   }
 
+  /**
+   *
+   *  Pass in a number 1-10 representing a star wars character.
+   *  return hair_color and eye color of that character.
+   *
+   * @param number
+   * @returns {Promise}
+   *
+   * @resolves {
+   *   hairColor: String,
+   *   eyeColor: String,
+   * }
+   *
+   * @rejects {
+   *    msg: string
+   * }
+   */
+
   getCharacterData(number) {
     return new Promise( (resolve, reject) => {
-      this.axios.get('https://swapi.co/api/people/' + number)
+
+      const intNumber = parseInt(number);
+
+      if (isNaN(intNumber)) {
+        reject(errorResponse)
+      } else if (intNumber < 0 || intNumber > 10) {
+        reject(errorResponse)
+      }
+
+      this.axios.get('https://swapi.co/api/people/' + intNumber)
         .then(function (response) {
           const importantData = {
             'hairColor': response.data.hair_color,
@@ -19,23 +46,6 @@ class StarWarsFunctions {
           resolve(importantData);
         })
         .catch(function (error) {
-          console.log('getCharacterData failed! ', error);
-          reject(error);
-        });
-    })
-  }
-
-  getMovieData(number) {
-    return new Promise( (resolve, reject) => {
-      this.axios.get('https://swapi.co/api/films/' + number)
-        .then(function (response) {
-          const importantData = {
-            "releaseDate": response.data.release_date
-          }
-          resolve(importantData);
-        })
-        .catch(function (error) {
-          console.log('getMovieData failed! ', error);
           reject(error);
         });
     })
