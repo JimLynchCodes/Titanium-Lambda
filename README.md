@@ -50,10 +50,20 @@ Then you can run the units tests like so:
 `npm test`
 
 
-## E2e Tests
+## Integration Tests
+
+E2e, or "end-to-end" tests are to me referring to tests that actually call out to the external services and verify the correct response. In this project I have created one file for "integration tests". Like unit tests, these aim to test individual source code functions in isolation. However, unlike unit tests these integration tests actually make calls out to external services.
 
 `npm run e2e-test`
 
+
+## E2e Tests
+In order to do a full end to end test we'd want to call the lambda function witg input similar to a real invocation (either from a REST call, scheduled event, or some other trigger). In this example I'm using the supertest library too hoook into the express middleware and send fake calls to it as if they were real REST requests. When these are working properly it can givena rwql sense of confidence that the lambda function is working properly from start to finish.
+
+
+## Performance Tests
+
+When it comes to aws lambda functions, you can quantitatively measure the performane of every execution with two numbers: __memory used__ and __duration of function execution__. Measuring the performance of aws lambda functions is actually very easy since every execution of your aws lambda function will output these numbers in the cloudwatch logs (and in the aws lambda console if invoking the function from there).
 
 
 
