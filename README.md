@@ -58,7 +58,8 @@ I think my ideal pipeline steps would look something like this.
 
 ## Unit Tests
 
-The unit tests are meant to test functions in isolation, mocking basically all dependencies.
+The unit tests are meant to test functions in isolation, mocking basically all dependencies. The Unit tests make heavy 
+use of stubs and spies from the sinon.js library to ensure of one little "unit" of code at a time.
 
 If you don't have mocha installed globally, please do that first:
 
