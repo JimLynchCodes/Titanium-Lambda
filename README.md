@@ -6,7 +6,9 @@ Welcome! I, Jim Lynch, am in the interview process for an awesome position at a 
 ## Try the live api now!
 
 Try hitting the live endpoint via putting it in your browser address bar, ajax, curl, postman, or some other REST client!  
+
 `https://ax7ezyq21m.execute-api.us-east-1.amazonaws.com/Prod?character=1`
+
 
 
 

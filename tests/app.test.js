@@ -6,117 +6,114 @@ const supertest = require('supertest');
 const test = require('unit.js');
 const app = require('../app.js');
 const sinon = require('sinon');
+const expect = require('chai').expect;
 
-const request = supertest(app);
+const fakeResponseObject = {
+  set: function () {
+  },
+  send: function () {
+  }
+};
 
-describe('Tests app', function() {
 
-  it('tests get handler: ', () => {
-    app.getHandler({}, {set: function() {
+describe('Tests app', function () {
 
-    }, send: function () {
+  describe('Reading params to lambda function.', () => {
 
-    }})
-  })
+    let stub;
 
-  xit('verifies get', function(done) {
-    sinon.stub(app.starWarsFunctions, 'getCharacterData').callsFake( () => {
-      return new Promise( (resolve, reject) => {
-        resolve({
-          'hairColor': 'rainbow',
-          'eyeColor': 'orange',
+    before(() => {
+      stub = sinon.stub(app.starWarsFunctions, 'getCharacterData').callsFake(() => {
+        return new Promise(resolve => {
+          resolve({
+            'name': 'Luke Skywalker',
+            'hair_color': 'blond',
+            'eye_color': 'blue',
+          })
         })
       })
+    });
+
+    after(() => {
+      stub.restore();
+    });
+
+    it('should set lambdaParams property from "req.apiGateway.event".', () => {
+      app.getHandler({
+        "apiGateway": {
+          "event": {
+            "hello": 'test-event'
+          }
+        }
+      }, fakeResponseObject);
+
+      expect(app.lambdaParams['hello']).to.equal('test-event')
+    });
+
+
+    it('should set lambdaParams property from "req.query".', () => {
+      app.getHandler({
+        "query": {
+          "something": 'other test'
+        }
+      }, fakeResponseObject);
+
+      expect(app.lambdaParams['something']).to.equal('other test')
     })
 
-    request.get('/').expect(200).end(function(err, result) {
+  });
 
-      test.string(result.body.hairColor).contains('rainbow');
-      test.string(result.body.eyeColor).contains('orange');
-      test.value(result).hasHeader('content-type', 'application/json; charset=utf-8');
-      done(err);
+  describe('correctly calling res.send to send lambda function response.', () => {
+
+    let stub;
+    let getCharacterDataSpy;
+
+    const fakeCharacterData = {
+      'name': 'Luke Skywalker',
+      'hair_color': 'blond',
+      'eye_color': 'blue',
+    };
+
+    afterEach(() => {
+      stub.restore();
+      getCharacterDataSpy.restore();
     });
-  });
-  xit('verifies post', function(done) {
-    request.post('/').expect(200).end(function(err, result) {
-      test.string(result.body.Output).contains('Hello');
-      test.value(result).hasHeader('content-type', 'application/json; charset=utf-8');
-      done(err);
+
+    it('should call res.send with the character data on success.', () => {
+      stub = sinon.stub(app.starWarsFunctions, 'getCharacterData').callsFake(() => {
+        return new Promise(resolve => {
+          resolve(fakeCharacterData)
+        })
+      });
+
+      getCharacterDataSpy = sinon.spy(fakeResponseObject, 'send');
+
+      return app.getHandler({
+        "apiGateway": {
+          "event": {
+            "hello": 'test-event'
+          }
+        }
+      }, fakeResponseObject).then(() => {
+        return expect(getCharacterDataSpy.calledOnceWithExactly(fakeCharacterData)).to.be.true;
+      });
     });
-  });
-  xit('sdf post', function(done) {
-    request.post('/').expect(200).end(function(err, result) {
-      test.string(result.body.Output).contains('Hello');
-      test.value(result).hasHeader('content-type', 'application/json; charset=utf-8');
-      done(err);
-    });
-  });
+
+    it('should call res.send with the error data on fail.', () => {
+
+      const sampleError = {"error": "uh oh, something broke!"}
+
+      stub = sinon.stub(app.starWarsFunctions, 'getCharacterData').callsFake(() => {
+        return new Promise((resolve, reject) => {
+          reject(sampleError);
+        })
+      });
+
+      getCharacterDataSpy = sinon.spy(fakeResponseObject, 'send');
+
+      return app.getHandler({}, fakeResponseObject).then(() => {
+        return expect(getCharacterDataSpy.calledOnceWithExactly(sampleError)).to.be.true;
+      });
+    })
+  })
 });
-
-
-
-// var sinon = require('sinon');
-// var expect = require('chai').expect
-// // const StarWarsFunctions = require('./../src/star-wars-functions');
-//
-// const app = require('../app');
-//
-// describe('star-wars-functions', function () {
-//
-//   describe('getMovieData', () => {
-//
-//     it('should should return an object with key "release date" formatted like, "May 15, 2018".',
-//       () => {
-//         // const swf = new StarWarsFunctions();
-//         // expect(swf.buildFinalResponse()).to.equal('ok!');
-//         // expect(StarWarsFunctions.buildFinalResponse()).to.equal('ok!');
-//
-//         // expect(app.get('/')).to.equal("yo")
-//
-//         console.log('ok ', app.get('/'))
-//
-//       })
-//
-//
-//   })
-//
-//
-//   describe('getCharacterData', () => {
-//
-//
-//     //   it('should should return an object with keys "hairColor" and "eyeColor" containing values from the axios response, ',
-//     //     () => {
-//     //       const swf = new StarWarsFunctions();
-//     //
-//     //       sinon.stub(swf.axios, 'get').callsFake(() => {
-//     //
-//     //         return new Promise(resolve => {
-//     //
-//     //           resolve({
-//     //             'some stuff': 'things...',
-//     //             'data': {
-//     //               'name': 'Luke Skywalker',
-//     //               'hair_color': 'blond',
-//     //               'eye_color': 'blue'
-//     //             }
-//     //           })
-//     //         })
-//     //       })
-//     //
-//     //
-//     //       swf.getCharacterData(1).then(result => {
-//     //
-//     //         return expect(result).to.deep.equal(
-//     //           {
-//     //             'eyeColor': 'blue',
-//     //             'hairColor': 'blond',
-//     //           }
-//     //         );
-//     //       })
-//     //
-//     //     })
-//     //
-//     // })
-//   // })
-//
-// })

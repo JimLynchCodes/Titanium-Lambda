@@ -15,14 +15,14 @@ app.starWarsFunctions = new StarWarsFunctions();
 
 app.getHandler = function (req, res) {
 
-  let lambdaParams = {};
+  app.lambdaParams = {};
 
   if (req.apiGateway) {
-    lambdaParams = Object.assign({}, lambdaParams, req.apiGateway.event)
+    app.lambdaParams = Object.assign({}, app.lambdaParams, req.apiGateway.event)
   }
 
   if (req.query) {
-    lambdaParams = Object.assign({}, lambdaParams, req.query)
+    app.lambdaParams = Object.assign({}, app.lambdaParams, req.query)
   }
 
   res.set({
@@ -30,7 +30,7 @@ app.getHandler = function (req, res) {
     'charset': 'utf-8'
   });
 
-  return app.starWarsFunctions.getCharacterData(lambdaParams.character).then(characterData => {
+  return app.starWarsFunctions.getCharacterData(app.lambdaParams.character).then(characterData => {
     res.send(characterData);
   }, err => {
     res.send(err);

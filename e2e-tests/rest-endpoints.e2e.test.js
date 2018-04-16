@@ -20,7 +20,6 @@ describe('Lambda responses when calling it as a REST endpoint.', function () {
 
   describe('Calling to endpoing in "happy case" where known character is queried.', () => {
 
-
     [
       {
         'charIndex': 1,
@@ -81,9 +80,7 @@ describe('Lambda responses when calling it as a REST endpoint.', function () {
         'name': 'bi-Wan Kenobi',
         'expectedHairColor': 'auburn, white',
         'expectedEyeColor': 'blue-gray'
-      },
-
-
+      }
     ].forEach(charObj => {
       it('verifies get', function (done) {
         request.get('/?character=' + charObj.charIndex)
@@ -95,11 +92,10 @@ describe('Lambda responses when calling it as a REST endpoint.', function () {
         });
       });
     })
-
-
-  })
+  });
 
   describe('Calling to endpoint with bad query param for character', () => {
+
     [
       {
         'charIndex': 'luke',
@@ -128,8 +124,7 @@ describe('Lambda responses when calling it as a REST endpoint.', function () {
       {
         'charIndex': -1,
         'expectedError': 'Please pass query parameter "character" with a value 0 - 10.'
-      },
-
+      }
     ]
       .forEach(charObj => {
         it('verifies get', function (done) {
@@ -142,22 +137,6 @@ describe('Lambda responses when calling it as a REST endpoint.', function () {
         });
       })
 
-
   })
 
-
-  xit('verifies post', function (done) {
-    request.post('/').expect(200).end(function (err, result) {
-      test.string(result.body.Output).contains('Hello');
-      test.value(result).hasHeader('content-type', 'application/json; charset=utf-8');
-      done(err);
-    });
-  });
-  xit('sdf post', function (done) {
-    request.post('/').expect(200).end(function (err, result) {
-      test.string(result.body.Output).contains('Hello');
-      test.value(result).hasHeader('content-type', 'application/json; charset=utf-8');
-      done(err);
-    });
-  });
 });
