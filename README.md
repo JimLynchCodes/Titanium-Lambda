@@ -59,6 +59,13 @@ If you don't have mocha installed global, please do that first:
 Then you can run the units tests like so:
 `npm test`
 
+Then you can run the test and generate code coverage reports:
+`npm test-coverage`
+
+Notice that right now it has 100% test coverage! :0
+
+<img src="./images/code-coverage-100.png" width="350" />
+
 
 ## Integration Tests
 
