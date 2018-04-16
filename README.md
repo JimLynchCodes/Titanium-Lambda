@@ -13,8 +13,7 @@ You can change the value of the _character_ query paramter in the url to an inte
 
 
 ## The Project on The Surface
-
-API that you hit passing in a query parameter, "character", It will then return a json object containing some data about a star wars character: their name, hair cookie, and eye color. The project is written in ES6 nodejs, and is meant to be deployed to aws lambda and run a REST endpoint or scheduled job. 
+This lambda function is meant to be triggered at a REST API that you hit passing in a query parameter, "character". The service will then return a json object containing some data about a star wars character corresponding to that number: their name, hair cookie, and eye color. It's supposed to be a simple example of a promise-based nodejs lambda function, automated tests, and integration with AWS devops services.
 
 ## The Meta Project
 For me, this project was the result of me sitting down and saying, "if I was THE serverless guy for a company, and I needed to create a process for how we should build robust, thoroughly tested, dependable lambda services, how would I do it?". I've used popular CI platforms like Team City, Jenkins, or Travis, but I've found going all-out AWS leads to a nice tighter and simpler integration with your CI pipeline and the actual deploy lambda environment(s).
