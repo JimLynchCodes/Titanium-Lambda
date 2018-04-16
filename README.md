@@ -43,6 +43,7 @@ I think my ideal pipeline steps would look something like this.
 - Code gets automatically picked up by AWS CodePipeline build server.
 - Runs Unit tests.
 - Run e2e tests
+- Generate JsDcoc
 - Build project
 - Deploy to dev environment
 - Run tests against live dev environment

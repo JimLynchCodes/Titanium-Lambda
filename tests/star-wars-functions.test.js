@@ -14,7 +14,7 @@ describe('star-wars-functions - getCharacterData', function () {
 
   describe('getCharacterData happy path.', () => {
 
-    it('should should return an object with keys "name", "hairColor", "eyeColor" containing values from the axios ' +
+    it('should return an object with keys "name", "hairColor", "eyeColor" containing values from the axios ' +
       'response, ', () => {
       const swf = new StarWarsFunctions();
 
@@ -45,78 +45,76 @@ describe('star-wars-functions - getCharacterData', function () {
 
     });
 
-    describe('bad inputs to "getCharacterData" that return error messages.', () => {
-      [
-        {
-          'charIndex': 'luke',
-          'error': 'Please pass query parameter "character" with a value 0 - 10.'
-        },
-        {
-          'charIndex': 'DERP',
-          'error': 'Please pass query parameter "character" with a value 0 - 10.'
-        },
-        {
-          'charIndex': '!@#$!#$^@#$%!',
-          'error': 'Please pass query parameter "character" with a value 0 - 10.'
-        },
-        {
-          'charIndex': '',
-          'error': 'Please pass query parameter "character" with a value 0 - 10.'
-        },
-        {
-          'charIndex': 42,
-          'error': 'Please pass query parameter "character" with a value 0 - 10.'
-        },
-        {
-          'charIndex': 11,
-          'error': 'Please pass query parameter "character" with a value 0 - 10.'
-        },
-        {
-          'charIndex': -1,
-          'error': 'Please pass query parameter "character" with a value 0 - 10.'
-        },
+  });
 
-      ]
-        .forEach(charObj => {
-          it(`should return error message for: ${charObj.charIndex} (not integers between 1 and 10`, () => {
-            const swf = new StarWarsFunctions();
-            return swf.getCharacterData(charObj.charIndex).then(successHandler => {
-              },
-              result => {
-                expect(result.error).to.deep.equal(charObj.error)
-              })
+  describe('bad inputs to "getCharacterData" that return error messages.', () => {
+    [
+      {
+        'charIndex': 'luke',
+        'error': 'Please pass query parameter "character" with a value 0 - 10.'
+      },
+      {
+        'charIndex': 'DERP',
+        'error': 'Please pass query parameter "character" with a value 0 - 10.'
+      },
+      {
+        'charIndex': '!@#$!#$^@#$%!',
+        'error': 'Please pass query parameter "character" with a value 0 - 10.'
+      },
+      {
+        'charIndex': '',
+        'error': 'Please pass query parameter "character" with a value 0 - 10.'
+      },
+      {
+        'charIndex': 42,
+        'error': 'Please pass query parameter "character" with a value 0 - 10.'
+      },
+      {
+        'charIndex': 11,
+        'error': 'Please pass query parameter "character" with a value 0 - 10.'
+      },
+      {
+        'charIndex': -1,
+        'error': 'Please pass query parameter "character" with a value 0 - 10.'
+      },
 
-          })
+    ]
+      .forEach(charObj => {
+        it(`should return error message for: ${charObj.charIndex} (not integers between 1 and 10`, () => {
+          const swf = new StarWarsFunctions();
+          return swf.getCharacterData(charObj.charIndex).then(successHandler => {
+            },
+            result => {
+              expect(result.error).to.deep.equal(charObj.error)
+            })
+
         })
-    })
-
-    describe('axios request fails.', () => {
-      it('should return promise rejected with object: { error: [error message from axios] } when the axios request ' +
-        'fails.', () => {
-
-        const swf = new StarWarsFunctions();
-
-        const axiosFailingGetStub = sinon.stub(swf.axios, 'get').callsFake(() => {
-
-          // swf.axios.throw new Error('bad stuff happened');
-          return new Promise( (resolve, reject) => {
-            reject('bad stuff happened!');
-          })
-        });
-
-        return swf.getCharacterData(1).then(successHandler => {},
-        result => {
-        axiosFailingGetStub.restore();
-        return expect(result).to.deep.equal(
-          {
-            'error': 'bad stuff happened!'
-          })
-        })
-
-
-
-
       })
+  });
+
+  describe('axios request fails.', () => {
+
+    it('should return promise rejected with object: { error: [error message from axios] } when the axios request ' +
+      'fails.', () => {
+
+      const swf = new StarWarsFunctions();
+
+      const axiosFailingGetStub = sinon.stub(swf.axios, 'get').callsFake(() => {
+        return new Promise((resolve, reject) => {
+          reject('bad stuff happened!');
+        })
+      });
+
+      return swf.getCharacterData(1).then(successHandler => {
+        },
+        result => {
+          axiosFailingGetStub.restore();
+          return expect(result).to.deep.equal(
+            {
+              'error': 'bad stuff happened!'
+            })
+        })
+
     })
 
   })

@@ -22,14 +22,15 @@ class StarWarsFunctions {
    *  @param number
    *  @returns {Promise}
    *
-   *  @resolves {
-   *    hairColor: String,
-   *    eyeColor: String,
-   *  }
+   *    @resolves {
+   *      name: String
+   *      hairColor: String,
+   *      eyeColor: String,
+   *    }
    *
-   *  @rejects {
-   *    msg: string
-   *  }
+   *    @rejects {
+   *      msg: string
+   *    }
    */
 
   getCharacterData(number) {
