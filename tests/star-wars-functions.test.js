@@ -105,8 +105,7 @@ describe('star-wars-functions - getCharacterData', function () {
         })
       });
 
-      return swf.getCharacterData(1).then(successHandler => {
-        },
+      return swf.getCharacterData(1).then(successHandler => { },
         result => {
           axiosFailingGetStub.restore();
           return expect(result).to.deep.equal(
