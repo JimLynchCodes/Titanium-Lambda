@@ -20,8 +20,10 @@ For me, this project was the result of me sitting down and saying, "if I was THE
 
 ## The CodeStar Dashboard
 
-Codestar Dashboard: https://console.aws.amazon.com/codestar/home?region=us-east-1#/projects/jims-cepsnlm/dashboard
+Codestar Dashboard [here](https://console.aws.amazon.com/codestar/home?region=us-east-1#/projects/jims-cepsnlm/dashboard). 
 _(Note: You won't be able to acess the codestar dashboard unless specifically given permissions by Jim.)_
+
+<img src="./images/aws-codestar-dashboard.png" width="650" />
 
 This sample code helps get you started with a simple Express web service
 deployed by AWS CloudFormation to AWS Lambda and Amazon API Gateway.
@@ -32,53 +34,81 @@ Here I'm using AWS CodePipeline, but the Jimbo pipeline is in a way independent 
 
 ## Easy DevOps AWS CodePipeline
 
-While CodePipeline is a configurable, flexible pipeline to which one can add or remove any number of steps, the Jimbo Pipeline is a specific set of steps that I follow like a recipe for new Lambda services.
+<img src="./images/aws-code-pipeline.png" width="650" />
+
+When you make a project with AWS Codestar is automtaically sets up CodePipeline which is a configurable, flexible build, test, and deploy pipeline to which one can add or remove any number of steps. 
+I think my ideal pipeline steps would look something like this.
 
 - Commit code to the git repository.
 - Code gets automatically picked up by AWS CodePipeline build server.
-- Run Unit tests.
-- run e2e tests
-- build project
-- deploy to dev
-- run "true e2e tests" hitting dev environment
+- Runs Unit tests.
+- Run e2e tests
+- Build project
+- Deploy to dev environment
+- Run tests against live dev environment
 - deploy to staging
-- run "true e2e tests" hitting dev environment
+- run tests against live staging environment
 - manually approve deployment from staging to prod
 - deploy to prod
 
 
-
-
 ## Unit Tests
 
-The unit tests are meant to test functions in isolation, mocking all side effects (in this case, the axios requests).
+The unit tests are meant to test functions in isolation, mocking basically all dependencies.
 
-If you don't have mocha installed global, please do that first:
+If you don't have mocha installed globally, please do that first:
+
 `npm i -g mocha`
 
 Then you can run the units tests like so:
+
 `npm test`
 
+
 Then you can run the test and generate code coverage reports:
+
 `npm test-coverage`
 
-Notice that right now it has 100% test coverage!
+note: in order to run this have you have instabul installed globally:
+
+`npm i -g istanbul`
+
+
+Notice that right now this template project has 100% test coverage!
 
 <img src="./images/code-coverage-100.png" width="650" />
 
 
-## Integration Tests
 
-E2e, or "end-to-end" tests are to me referring to tests that actually call out to the external services and verify the correct response. In this project I have created one file for "integration tests". Like unit tests, these aim to test individual source code functions in isolation. However, unlike unit tests these integration tests actually make calls out to external services.
+## E2e Tests
 
+E2e, or "end-to-end" tests can have different meanings in different situations. For front-ends frameworks e2e testing
+often involves browser automation, something that doesn't really make sense for a lambda function. In this project I have
+two types of e2e tests: 
+
+- rest endpoint e2e tests
+- small integration tests
+
+These correspond to the files in the e2e-tests/ folder in the root of this project. They are both run with the command:
 `npm run e2e-test`
 
 
-## E2e Tests
-In order to do a full end to end test we'd want to call the lambda function witg input similar to a real invocation (either from a REST call, scheduled event, or some other trigger). In this example I'm using the supertest library too hook into the express middleware and send fake calls to it as if they were real REST requests. When these are working properly it can givena rwql sense of confidence that the lambda function is working properly from start to finish.
+#### Rest endpoint e2e tests
+These tests use the supertest library to hook into the express middleware and basically simulate firing the REST event 
+to your function and expecting that the correct response is returned, including headers and authotization-headers.
+
+
+#### Small Integration Tests
+These tests use the supertest library to hook into the express middleware and basically simulate firing the REST event 
+to your function and expecting that the correct response is returned, including headers and authotization-headers.
+They are similar to unit tests in that they aim to verify the correct return values for individual functions tested in 
+isolation. However, unlike unit tests which have side effects such as external requests mocked, these tests allow the functions to call the external apis
 
 
 ## BDD Tests
+Bevaior driven development is awsome! But when it comes to the code, what does bdd really mean? In the world of Nodejs it
+basically comes to to using CucumberJS to run your "feature files" and "step definition files". Although I haven't yet 
+added npm scripts to execute the bdd tests, I have an example feature file that you might use for this project. 
 Feature file
 
 
@@ -86,9 +116,11 @@ Feature file
 
 When it comes to aws lambda functions, you can quantitatively measure the performane of every execution with two numbers: __memory used__ and __duration of function execution__. Measuring the performance of aws lambda functions is actually very easy since every execution of your aws lambda function will output these numbers in the cloudwatch logs (and in the aws lambda console if invoking the function from there).
 
+
 ## Amazon X-ray Performance Analysis 
 With each executive of a lambda function you get the total number of milliseconds for which you were billed, but there's no insight into what what going on during that time. Amazon X-ray is a neat service that shows a visual timeline of what's happening during you function execution so you can we how much time the nodejs engine took to start up, how much time each of your functions take to complete, etc. Note that this protect is not currently at up to use aws x-ray, but it would take only a few lives if cute to add it. 
 
+<img src="./images/aws-x-ray-lambda.png" width="650" />
 
 
 ## Included Files for AWS DevOps Pipeline
