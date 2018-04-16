@@ -15,11 +15,12 @@ https://ax7ezyq21m.execute-api.us-east-1.amazonaws.com/Prod?character=1
 API that you hit passing in a query parameter, "character", It will then return a json object containing some data about a star wars character: their name, hair cookie, and eye color. The project is written in ES6 nodejs, and is meant to be deployed to aws lambda and run a REST endpoint or scheduled job. 
 
 ## The Meta Project
-For me, this project was the result of me sitting down and saying, "if I was THE serverless guy for a Large enterprise and needed to create a process for how we should build robust, thoroughly tested, dependable lambda services, how would I do it?". Although I've used popular CI platforms like Team City, Jenkins, or Travis, I've found that maintaining the infrastructure for these can be a lot of work. I find the (relatively) new CI tools built into AWS to be unparalleled for development of lambda functions. 
+For me, this project was the result of me sitting down and saying, "if I was THE serverless guy for a company, and I needed to create a process for how we should build robust, thoroughly tested, dependable lambda services, how would I do it?". I've used popular CI platforms like Team City, Jenkins, or Travis, but I've found going all-out AWS leads to a nice tighter and simpler integration with your CI pipeline and the actual deploy lambda environment(s).
 
+## Most Reasons Why Serverless is Awsome
+I do a lot of front-end javascript development, and honestly I find aws lambda nodejs to be way more fun and interesting. I love how serverless is so small and focused, and I think it just makes it that much easier to have 100% code coverage (to to mention all that view markup to worry about). I love that in serverless development you are quantitatively rewarded for making your code more efficient since you can measure the execution time and max memory used, comparing the numbers over time to find which version of the code works best.
 
 ## The CodeStar Dashboard
-
 Codestar Dashboard [here](https://console.aws.amazon.com/codestar/home?region=us-east-1#/projects/jims-cepsnlm/dashboard). 
 _(Note: You won't be able to acess the codestar dashboard unless specifically given permissions by Jim.)_
 

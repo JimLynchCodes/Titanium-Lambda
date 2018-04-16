@@ -1,6 +1,6 @@
 'use strict';
 /**
- *  @author Jim Lynch <jim@wisdomofjim.com>
+ *  @author Jim Lynch
  *
  *  The name of this file and object is exposes is "app". It is common in express.js examples to refer to the webserver
  *  being created as "app". This way we can handle our endpoints in a very similar way we do with non-servereless

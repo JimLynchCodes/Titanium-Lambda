@@ -1,6 +1,6 @@
 'use strict';
 /**
- *  @author Jim Lynch <jim@wisdomofjim.com>
+ *  @author Jim Lynch
  *
  *  The function "exports.handler" in an "index.js" file is the colloquial naming conventions for the main entry point
  *  to the lambda function. is the entry point for the lambda function.

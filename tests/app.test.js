@@ -9,12 +9,9 @@ const sinon = require('sinon');
 const expect = require('chai').expect;
 
 const fakeResponseObject = {
-  set: function () {
-  },
-  send: function () {
-  }
+  set: function () {},
+  send: function () {}
 };
-
 
 describe('Tests app', function () {
 
@@ -63,7 +60,7 @@ describe('Tests app', function () {
 
   });
 
-  describe('correctly calling res.send to send lambda function response.', () => {
+  describe('correctly calling express\'s res.send to send the lambda function response.', () => {
 
     let stub;
     let getCharacterDataSpy;

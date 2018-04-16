@@ -1,6 +1,6 @@
 'use strict';
 /**
- *   @author Jim Lynch <jim@wisdomofjim.com>
+ *   @author Jim Lynch
  *
  *   Unit tests for the star-wars-functions class. Here I mock axios.get method and verify that a hardcoded response
  *   yields the correct return value for getCharacterData function. Also verifies that bad inputs return error messages.

@@ -1,5 +1,5 @@
 /**
- *  @author Jim Lynch <jim@wisdomofjim.com>
+ *  @author Jim Lynch
  *
  *  This is one one way of testing your lambda function as a whole when it is exposed as a REST endpoint.
  *

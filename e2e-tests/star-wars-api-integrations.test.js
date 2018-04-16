@@ -1,6 +1,6 @@
 'use strict';
 /**
- *  @author Jim Lynch <jim@wisdomofjim.com>
+ *  @author Jim Lynch
  *
  *  This is an example of what I like to call "integration tests". They are similar to unit tests in that they aim to
  *  verify the correct return values for individual functions tested in isolation. However, unlike unit tests which
