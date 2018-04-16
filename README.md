@@ -62,9 +62,9 @@ Then you can run the units tests like so:
 Then you can run the test and generate code coverage reports:
 `npm test-coverage`
 
-Notice that right now it has 100% test coverage! :0
+Notice that right now it has 100% test coverage!
 
-<img src="./images/code-coverage-100.png" width="350" />
+<img src="./images/code-coverage-100.png" width="650" />
 
 
 ## Integration Tests
