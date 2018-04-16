@@ -1,6 +1,6 @@
 # Jim's Codestar Enterprise Pipeline Starwars NodeJS Lambda Microservice
 
-Welcome! This is an example of a Lambda function I developed with AWS Codestar devops pipeline and various automated testing. I hope to use this project and the AWS CodeStart platform as a template for spinnging robust, enterprise-level aws lambda functions with a full devops ci pipeline, deployment environments, and seamless integration out of the box. 
+Welcome! This is an example of a Lambda function I developed with AWS Codestar devops pipeline and various types of automated testing. I hope to use this project and the AWS CodeStart platform as a template for spinnging up robust, enterprise-level aws lambda functions with a full devops ci pipeline, deployment environments, and seamless integration out of the box. 
 
 
 ## Try the live api now!
@@ -16,30 +16,25 @@ You can change the value of the _character_ query paramter in the url to an inte
 This lambda function is meant to be triggered at a REST API that you hit passing in a query parameter, "character". The service will then return a json object containing some data about a star wars character corresponding to that number: their name, hair cookie, and eye color. It's supposed to be a simple example of a promise-based nodejs lambda function, automated tests, and integration with AWS devops services.
 
 ## The Meta Project
-For me, this project was the result of me sitting down and saying, "if I was THE serverless guy for a company, and I needed to create a process for how we should build robust, thoroughly tested, dependable lambda services, how would I do it?". I've used popular CI platforms like Team City, Jenkins, or Travis, but I've found going all-out AWS leads to a nice tighter and simpler integration with your CI pipeline and the actual deploy lambda environment(s).
+For me, this project was the result of me sitting down and saying, "if I was THE serverless guy for a company, and I needed to create a process for how we should build solid, thoroughly tested and dependable lambda services, how would I do it?". I've used popular CI platforms like Team City, Jenkins, or Travis, but I've found going all-out AWS leads to a nice and simple integration between your CI pipeline and the actual deployed lambda environment(s).
 
-## Most Reasons Why Serverless is Awsome
-I do a lot of front-end javascript development, and honestly I find aws lambda nodejs to be way more fun and interesting. I love how serverless is so small and focused, and I think it just makes it that much easier to have 100% code coverage (to to mention all that view markup to worry about). I love that in serverless development you are quantitatively rewarded for making your code more efficient since you can measure the execution time and max memory used, comparing the numbers over time to find which version of the code works best.
+## More Reasons Why Serverless is Awsome
+I do a lot of front-end javascript development, and honestly I find aws lambda nodejs to be way more fun and interesting. I love how serverless is so small and focused, and I think it just makes it that much easier to have 100% code coverage (not to mention you don't have all that view markup to worry about). I love that in serverless development you are quantitatively rewarded for making your code more efficient since you can measure the execution time and max memory used, comparing the numbers over time to find which version of the code works best.
 
 ## The CodeStar Dashboard
-Codestar Dashboard [here](https://console.aws.amazon.com/codestar/home?region=us-east-1#/projects/jims-cepsnlm/dashboard). 
+CodeStar is something I have discovered relatively recently, and I really like it a lot. It basically sets up CodePipeline for you, provisions some resources, and provides you with a nice dashboard for monitoring your project.
+
+You can find the Codestar dashboard for this proejct[here](https://console.aws.amazon.com/codestar/home?region=us-east-1#/projects/jims-cepsnlm/dashboard). 
 _(Note: You won't be able to acess the codestar dashboard unless specifically given permissions by Jim.)_
 
 <img src="./images/aws-codestar-dashboard.png" width="650" />
 
-This sample code helps get you started with a simple Express web service
-deployed by AWS CloudFormation to AWS Lambda and Amazon API Gateway.
-
-## Why AWS?
-
-Here I'm using AWS CodePipeline, but the Jimbo pipeline is in a way independent of AWS.
 
 ## Easy DevOps AWS CodePipeline
 
 <img src="./images/aws-code-pipeline.png" width="650" />
 
-When you make a project with AWS Codestar is automtaically sets up CodePipeline which is a configurable, flexible build, test, and deploy pipeline to which one can add or remove any number of steps. 
-I think my ideal pipeline steps would look something like this.
+When you make a project with AWS Codestar is automtaically sets up CodePipeline which is a configurable, flexible build, test, and deploy pipeline to which one can add or remove any number of steps. I think my ideal pipeline steps would look something like this.
 
 - Commit code to the git repository.
 - Code gets automatically picked up by AWS CodePipeline build server.
@@ -67,7 +62,6 @@ If you don't have mocha installed globally, please do that first:
 Then you can run the units tests like so:
 
 `npm test`
-
 
 Then you can run the test and generate code coverage reports:
 
@@ -99,32 +93,32 @@ These correspond to the files in the e2e-tests/ folder in the root of this proje
 
 #### Rest endpoint e2e tests
 These tests use the supertest library to hook into the express middleware and basically simulate firing the REST event 
-to your function and expecting that the correct response is returned, including headers and authotization-headers.
+to your function and expecting that the correct response is returned, including headers and authotization-headers. These tests really try to covert the whole lambda function, beginning when the REST request first comes in and veryfying that the right response is sent from the lambda function back to the client. Since hese tests use the supertest library to hook into the express middleware they basically simulate firing the REST event to your function and then expect that the correct response is returned, including headers and authotization-headers.
 
 
 #### Small Integration Tests
-These tests use the supertest library to hook into the express middleware and basically simulate firing the REST event 
-to your function and expecting that the correct response is returned, including headers and authotization-headers.
-They are similar to unit tests in that they aim to verify the correct return values for individual functions tested in 
-isolation. However, unlike unit tests which have side effects such as external requests mocked, these tests allow the functions to call the external apis
+These are similar to unit tests in that they aim to verify the correct return values for individual functions tested in 
+isolation. However, unlike unit tests which have side effects such as external requests mocked, these tests allow the functions to call the external apis without mocking or stubbing anything. If there is a problem or bug ocurring in the code directly around the your async code wrappers, these tests can really expose that.
 
 
 ## BDD Tests
 Bevaior driven development is awsome! But when it comes to the code, what does bdd really mean? In the world of Nodejs it
 basically comes to to using CucumberJS to run your "feature files" and "step definition files". Although I haven't yet 
-added npm scripts to execute the bdd tests, I have an example feature file that you might use for this project. 
-Feature file
+added npm scripts to execute the bdd tests, I have an example feature file that you might use for this project. Feature files are awesome because they are written in Gherkin syntax. This reads like plain english, but can also be executed from the command line just like other automated tests. 
 
 
 ## Performance Tests
 
-When it comes to aws lambda functions, you can quantitatively measure the performane of every execution with two numbers: __memory used__ and __duration of function execution__. Measuring the performance of aws lambda functions is actually very easy since every execution of your aws lambda function will output these numbers in the cloudwatch logs (and in the aws lambda console if invoking the function from there).
+When it comes to aws lambda functions, you can quantitatively measure the performane of every execution with two numbers: __max memory used__ and __duration of function execution__. Measuring the performance of aws lambda functions is actually very easy since every execution of your aws lambda function will output these numbers in the cloudwatch logs (and in the aws lambda console if invoking the function from there). I don't currently have an automated script for performance tests like I do for the other automated tests, but to me performance is something to look at, compare, and improve over time as the function is in use.
 
 
 ## Amazon X-ray Performance Analysis 
 With each executive of a lambda function you get the total number of milliseconds for which you were billed, but there's no insight into what what going on during that time. Amazon X-ray is a neat service that shows a visual timeline of what's happening during you function execution so you can we how much time the nodejs engine took to start up, how much time each of your functions take to complete, etc. Note that this protect is not currently at up to use aws x-ray, but it would take only a few lives if cute to add it. 
 
 <img src="./images/aws-x-ray-lambda.png" width="650" />
+
+## JsDoc
+I'm definitely a fan of making your code more readable and easier to understand. I've tried to annotate my functions in this project with descriptions and @param / @return type descriptions. 
 
 
 ## Included Files for AWS DevOps Pipeline
