@@ -18,7 +18,9 @@
   },
   "scripts": {
     "test": "mocha --recursive tests",
+    "test-once": "mocha --recursive tests --exit",
     "test-coverage": "istanbul cover _mocha --recursive tests",
-    "e2e-test": "mocha --recursive e2e-tests"
+    "e2e-test": "mocha --recursive e2e-tests",
+    "precommit": "npm run test-once && istanbul cover _mocha --recursive tests"
   }
 }

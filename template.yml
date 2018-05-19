@@ -24,6 +24,6 @@ Resources:
         GetEvent:
           Type: Api
           Properties:
-            Path: /
+  chrome-extension://lpdblnhhdcgiakcblccpdeggkganijol/options.html          Path: /
             Method: get
 
