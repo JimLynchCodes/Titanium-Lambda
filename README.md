@@ -1,6 +1,6 @@
 # Jim's Codestar Enterprise Pipeline Starwars NodeJS Lambda Microservice
 
-Welcome! This is an example of a Lambda function I developed with AWS Codestar devops pipeline and various types of automated testing. I hope to use this project and the AWS CodeStart platform as a template for spinnging up robust, enterprise-level aws lambda functions with a full devops ci pipeline, deployment environments, and seamless integration out of the box. 
+Welcome! This is an example of a Lambda function I developed with AWS Codestar devops pipeline and various types of automated testing. You can use this project as a template of sorts for developing NodeJS AWS Lambda functions with AWS CodeStar. Hopefully you find that these robust, enterprise-level aws lambda functions with a full devops ci pipeline will be more easily manageble and maintainable throughout development, deployment, and beyond.
 
 
 ## Try the live api now!
@@ -13,7 +13,7 @@ You can change the value of the _character_ query paramter in the url to an inte
 
 
 ## The Project on The Surface
-This lambda function is meant to be triggered at a REST API that you hit passing in a query parameter, "character". The service will then return a json object containing some data about a star wars character corresponding to that number: their name, hair cookie, and eye color. 
+The lambda function triggers a service at the endpoint _ a REST API that you hit passing in a query parameter, "character". The service will then return a json object containing some data about a star wars character corresponding to that number: their name, hair cookie, and eye color. 
 
 ## The Meta Project 
 The Stars Wars endpoint could be switched out for any asynchronous api (series / combination of api calls). This is a great example of how to make clean, thoroughly testsed Nodejs microserverices that are performant, efficient, and _actually_ do scale to any amount of traffic all on their own. This project is a specific start wars implementation of a more generic entrprise nodejs lambda architecture with automated tests, and integration with AWS devops services.
