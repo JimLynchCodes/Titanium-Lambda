@@ -116,6 +116,10 @@ describe('star-wars-functions - getCharacterData', function () {
 
     })
 
+    it('should fail hard', () => {
+      expect(2).to.equal(2)
+    })
+
   })
 
 });

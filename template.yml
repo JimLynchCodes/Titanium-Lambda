@@ -14,6 +14,8 @@ Resources:
     Properties:
       Handler: index.handler
       Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 5
       Environment:
         Variables:
           NODE_ENV: production
