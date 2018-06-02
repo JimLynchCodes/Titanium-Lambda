@@ -26,6 +26,6 @@ Resources:
         GetEvent:
           Type: Api
           Properties:
-          Path: /
+            Path: /
             Method: get
 
