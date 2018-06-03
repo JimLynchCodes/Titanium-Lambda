@@ -7,7 +7,7 @@
  *  have side effects such as external requests mocked, these tests allow the functions to call the external apis.
  */
 const expect = require('chai').expect
-const StarWarsFunctions = require('./../src/star-wars-functions');
+const StarWarsFunctions = require('../../src/star-wars-functions');
 
 
 describe('StarWarsFunctions', function () {

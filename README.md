@@ -117,9 +117,36 @@ When it comes to aws lambda functions, you can quantitatively measure the perfor
 
 ## Load Tests
 For load testing REST endpoints my favorite tool is [Gatling](https://gatling.io/). It's very awesome for a number of reasons:
-  - eff
-  - clean, succinct DSL to describe your load tests.
+  - Efficiently uses Akka messages instead of real threads.
+  - Has a clean, succinct DSL to describe your load tests.
+  - Outputs pretty charts for analyzing test results.
+  - Easily run from shell with a single command (and can be run in CI pipeline!).
+  - Has a badass gatling gun logo.
+  
+Unfortunately, there is no npm package for gatling. The way that I normally add gatling to a project is to just go to the [gatling download page](https://gatling.io/download/), download the gatling folder, and just drop the folder into your project.
 
+Gatling can be used to perform load testing on the live lambda function endpoint. 
+With gatling we can hit the endpoint with X number of concurrent connections and then look at the metrics of how the function performs.
+ 
+_Note: Running gatling load tests require Java 8 JDK._
+ 
+To run load tests:
+ 
+`npm run load`
+ 
+This will call gatling.sh and runs the simulation specified with the -s flag.
+ 
+Results will then be output to `/tests/gatling-2.3.1/results`.
+ 
+This will create a nice little dashboard with charts which you can view by opening the generated index.html file in a browser. 
+ 
+The tests in Gatling are called "simulations", and the simulation files are written in Scala (but don't be afraid of them!).
+ 
+The main load test simulation for this project is located here: `tests/load/gatling-2.3.1/user-files/simulations/default/user-embed-lambda.load.test.scala`.
+ 
+_Note: Load tests are currently _**not**_ run as part of the CI pipeline._
+  
+  
 ## Amazon X-ray Performance Analysis 
 With each executive of a lambda function you get the total number of milliseconds for which you were billed, but there's no insight into what what going on during that time. Amazon X-ray is a neat service that shows a visual timeline of what's happening during you function execution so you can we how much time the nodejs engine took to start up, how much time each of your functions take to complete, etc. Note that this protect is not currently at up to use aws x-ray, but it would take only a few lives if cute to add it. Tools like Gatling are great for telling you if your service is slow but not _why_ it's slow. Once you see that your service is running to slowly, Amazon X-Ray is an excellent tool allow you to see what function of your coding are taking longest.
 

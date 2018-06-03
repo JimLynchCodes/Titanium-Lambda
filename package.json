@@ -22,6 +22,7 @@
     "test-coverage": "istanbul cover _mocha --recursive tests",
     "e2e": "mocha --recursive e2e-tests",
     "e2e-once": "mocha --recursive e2e-tests",
+    "load": "./tests/load/gatling-2.3.1/bin/gatling.sh -m -s userEmbedLoadTests.basicRampUpTest",
     "precommit": "npm run test-once && istanbul cover _mocha --recursive tests && npm run e2e-once"
   }
 }

@@ -5,14 +5,14 @@
  *
  *  With the supertest library we can hook into the express middleware we are using to make it think it is
  *  being hit by a real get / post request, etc. These tests DO call out to external services (hence why they are
- *  in the e2e-tests folder).
+ *  in the e2e folder).
  */
 
 'use strict';
 
 const supertest = require('supertest');
 const test = require('unit.js');
-const app = require('../app.js');
+const app = require('../../app.js');
 
 const request = supertest(app);
 
