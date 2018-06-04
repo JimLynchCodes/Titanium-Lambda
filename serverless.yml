@@ -24,6 +24,7 @@ provider:
   runtime: nodejs6.10
   memorySize: 512
   timeout: 6
+  endpointType: EDGE
 
 # you can overwrite defaults here
 #  stage: dev
