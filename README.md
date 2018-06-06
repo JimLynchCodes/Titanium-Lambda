@@ -197,4 +197,6 @@ Imagine your Lambdas singing along to the lyrics:
 
 ## Thanks!
 
-Thanks for checking out this repository. Feel free to open issues with questions or suggestions, and if you like this please give it a star!
+Thanks to all the contributors who have helped make this project awesome!
+
+If you are new to this project, feel free to open issues with questions or suggestions, join our [slack group](https://join.slack.com/t/titaniumlambda/shared_invite/enQtMzc2ODQ4ODgyNjI4LTQyYzc4Mzc4Yzg2YmZkZGU2ZGFlMjliNmQ3MmVjYmQwYzkxZGUwZDVlZWNhNTNlODg0NTk2Yzc1YWYyNzliYWQ), and if you like this repo please give it a star!
