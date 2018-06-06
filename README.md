@@ -189,7 +189,7 @@ AWS CodeStar Forum: https://forums.aws.amazon.com/forum.jspa?forumID=248
 
 
 ## Official Song
-The official song of the Titanium Lambda project is [Titanium by Dabid Guetta & Sia](https://www.youtube.com/watch?v=JRfuAukYTKg).
+The official song of the Titanium Lambda project is [Titanium by David Guetta & Sia](https://www.youtube.com/watch?v=JRfuAukYTKg).
 
 Imagine your Lambdas singing along to the lyrics:
 
