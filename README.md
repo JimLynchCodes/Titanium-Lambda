@@ -1,6 +1,6 @@
-# Jim's Codestar Enterprise Pipeline Starwars NodeJS Lambda Microservice
+# Titanium Lambda
 
-Welcome! This is an example of a Lambda function I developed with AWS Codestar devops pipeline and various types of automated testing. You can use this project as a template of sorts for developing NodeJS AWS Lambda functions with AWS CodeStar. Hopefully you find that these robust, enterprise-level aws lambda functions with a full devops ci pipeline will be more easily manageble and maintainable throughout development, deployment, and beyond.
+Welcome! Originally the brainchild of developer Jim Lynch, this project is meant to be an example of code and processes around the code that will lead to stable, robust, and successful Lambda functions. 
 
 
 ## Try the live api now!
@@ -19,7 +19,7 @@ The lambda function triggers a service at the endpoint _ a REST API that you hit
 The Stars Wars endpoint could be switched out for any asynchronous api (series / combination of api calls). This is a great example of how to make clean, thoroughly testsed Nodejs microserverices that are performant, efficient, and _actually_ do scale to any amount of traffic all on their own. This project is a specific start wars implementation of a more generic entrprise nodejs lambda architecture with automated tests, and integration with AWS devops services.
 
 ## Why?
-For me, this project was the result of me sitting down and saying, "if I was THE serverless guy for a company, and I needed to create a process for how we should build solid, thoroughly tested and dependable lambda services, how would I do it?". I've used popular CI platforms like Team City, Jenkins, or Travis, but I've found going all-out AWS leads to a nice and simple integration between your CI pipeline and the actual deployed lambda environment(s). Whenenver I need to start a new type of automated test I'll often come back here, copy/paste a simple test file, and go from there.
+This project was the result of Jim sitting down and saying, "if I was THE serverless guy for a company, and I needed to create a process for how we should build solid, thoroughly tested and dependable lambda services, how would I do it?". I've used popular CI platforms like Team City, Jenkins, or Travis, but I've found going all-out AWS leads to a nice and simple integration between your CI pipeline and the actual deployed lambda environment(s). Whenenver I need to start a new type of automated test I'll often come back here, copy/paste a simple test file, and go from there.
 
 ## More Reasons Why Serverless is Awsome
 I do a lot of front-end javascript development, and honestly I find aws lambda nodejs to be way more fun and interesting. I love how serverless is so small and focused, and I think it just makes it that much easier to have 100% code coverage (not to mention you don't have all that view markup to worry about). I love that in serverless development you are quantitatively rewarded for making your code more efficient since you can measure the execution time and max memory used, comparing the numbers over time to find which version of the code works best.
@@ -186,7 +186,7 @@ AWS CodeStar Forum: https://forums.aws.amazon.com/forum.jspa?forumID=248
 
 
 ## Why "Titanium"?
-
+Titanium is one of the densest materials on earth. It has been battle-tested and is used for the most extreme industries such artillery, military, and aerospace. Titanium is also especially recognized for its high strength-to-weight ratio, and it thinks a parrallel can be drawn with Lambda functions as they are meant to be both super powerful / scalable yet very lightweight.
 
 ## Official Song
 The official song of the Titanium Lambda project is [Titanium by David Guetta & Sia](https://www.youtube.com/watch?v=JRfuAukYTKg).
