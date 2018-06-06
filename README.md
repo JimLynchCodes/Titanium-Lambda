@@ -185,6 +185,16 @@ http://docs.aws.amazon.com/codestar/latest/userguide/welcome.html
 AWS CodeStar Forum: https://forums.aws.amazon.com/forum.jspa?forumID=248
 
 
+## Why "Titanium"?
+
+
+## Official Song
+The official song of the Titanium Lambda project is [Titanium by Dabid Guetta & Sia](https://www.youtube.com/watch?v=JRfuAukYTKg).
+
+Imagine your Lambdas singing along to the lyrics:
+
+  _`♪ You shoot me requeeeeests, but I won't fail! I AM TITAAAAANNNNNNIIIIIIIUUUUUUUUUUUMMMM! ♪`_
+
 ## Thanks!
 
 Thanks for checking out this repository. Feel free to open issues with questions or suggestions, and if you like this please give it a star!
