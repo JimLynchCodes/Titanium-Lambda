@@ -2,6 +2,8 @@
 
 _Titanium Lambda_ is an opinionated set of guidelines and processes for building stable, robust, and successful serverless functions. 
 
+<img src="./images/Titanium Lambda Logo.png" width="300" />
+
 ## Example Project
 The lambda function triggers a service at the endpoint _ a REST API that you hit passing in a query parameter, "character". The service will then return a json object containing some data about a star wars character corresponding to that number: their name, hair cookie, and eye color. 
 
