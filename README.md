@@ -2,9 +2,10 @@
 
 _Titanium Lambda_ is an opinionated set of guidelines and processes for building stable, robust, and successful serverless functions. 
 
+## Example Project
+The lambda function triggers a service at the endpoint _ a REST API that you hit passing in a query parameter, "character". The service will then return a json object containing some data about a star wars character corresponding to that number: their name, hair cookie, and eye color. 
 
 ## Try the live api now!
-
 Try hitting the live endpoint via putting it in your browser address bar, ajax, curl, postman, or some other REST client!  
 
 https://ax7ezyq21m.execute-api.us-east-1.amazonaws.com/Prod?character=1
@@ -12,25 +13,43 @@ https://ax7ezyq21m.execute-api.us-east-1.amazonaws.com/Prod?character=1
 You can change the value of the _character_ query paramter in the url to an integer between 1 and 10 (other numbers work, but it officially supports 1 through 10). The service then calls out to the [star wars api](https://swapi.co/), parses the result, and returns the character's name, eye color, and hair color.
 
 
-## The Project on The Surface
-The lambda function triggers a service at the endpoint _ a REST API that you hit passing in a query parameter, "character". The service will then return a json object containing some data about a star wars character corresponding to that number: their name, hair cookie, and eye color. 
-
 ## The Meta Project 
 The Stars Wars endpoint could be switched out for any asynchronous api (series / combination of api calls). This is a great example of how to make clean, thoroughly testsed Nodejs microserverices that are performant, efficient, and _actually_ do scale to any amount of traffic all on their own. This project is a specific start wars implementation of a more generic entrprise nodejs lambda architecture with automated tests, and integration with AWS devops services.
+
 
 ## Why?
 This project was the result of Jim sitting down and saying, "if I was THE serverless guy for a company, and I needed to create a process for how we should build solid, thoroughly tested and dependable lambda services, how would I do it?". I've used popular CI platforms like Team City, Jenkins, or Travis, but I've found going all-out AWS leads to a nice and simple integration between your CI pipeline and the actual deployed lambda environment(s). Whenenver I need to start a new type of automated test I'll often come back here, copy/paste a simple test file, and go from there.
 
-## More Reasons Why Serverless is Awsome
-I do a lot of front-end javascript development, and honestly I find aws lambda nodejs to be way more fun and interesting. I love how serverless is so small and focused, and I think it just makes it that much easier to have 100% code coverage (not to mention you don't have all that view markup to worry about). I love that in serverless development you are quantitatively rewarded for making your code more efficient since you can measure the execution time and max memory used, comparing the numbers over time to find which version of the code works best.
 
 ## The CodeStar Dashboard
-CodeStar is something I have discovered relatively recently, and I really like it a lot. It basically sets up CodePipeline for you, provisions some resources, and provides you with a nice dashboard for monitoring your project.
+There are various ways of starting your project, but Titanium Lambda recommends using [AWS CodeStar](). basically sets up CodePipeline for you, provisions some resources, and provides you with a nice dashboard for monitoring your project.
 
 You can find the Codestar dashboard for this proejct[here](https://console.aws.amazon.com/codestar/home?region=us-east-1#/projects/jims-cepsnlm/dashboard). 
 _(Note: You won't be able to acess the codestar dashboard unless specifically given permissions by Jim.)_
 
 <img src="./images/aws-codestar-dashboard.png" width="650" />
+
+
+## More Reasons Why Serverless is Awesome
+I do a lot of front-end javascript development, and honestly I find aws lambda nodejs to be way more fun and interesting. I love how serverless is so small and focused, and I think it just makes it that much easier to have 100% code coverage (not to mention you don't have all that view markup to worry about). I love that in serverless development you are quantitatively rewarded for making your code more efficient since you can measure the execution time and max memory used, comparing the numbers over time to find which version of the code works best.
+
+
+## Optional "Impatient Deploy" With Serverless Framework
+Although having Amazon's CodePipeline hooked up to this project is pretty awesome, the waiting time for the stages of CodePipeline can just be too unbearably slow for me.
+
+For a much faster feedback loop you can deploy to another environment, independent of your pipeline environments, which I like to call the "impatient environment". You can do this with the [serverless](https://github.com/serverless/serverless) framework CLI and (included here) serverless.yml configuration file.
+
+First, install the serverless npm module globally:
+
+`npm i serverless -g`
+
+You will also need to provide access to the cli tools so they can push to your AWS account. This can be done with the aws cli _configure_ command:
+
+`aws configure`
+
+Then you can deploy like this:
+
+`serverless deploy`
 
 
 ## Easy DevOps AWS CodePipeline
@@ -115,7 +134,7 @@ added npm scripts to execute the bdd tests, I have an example feature file that 
 
 When it comes to aws lambda functions, you can quantitatively measure the performane of every execution with two numbers: __max memory used__ and __duration of function execution__. Measuring the performance of aws lambda functions is actually very easy since every execution of your aws lambda function will output these numbers in the cloudwatch logs (and in the aws lambda console if invoking the function from there). I don't currently have an automated script for performance tests like I do for the other automated tests, but to me performance is something to look at, compare, and improve over time as the function is in use.
 
-## Load Tests
+## Load Tests with Gatling
 For load testing REST endpoints my favorite tool is [Gatling](https://gatling.io/). It's very awesome for a number of reasons:
   - Efficiently uses Akka messages instead of real threads.
   - Has a clean, succinct DSL to describe your load tests.
@@ -138,7 +157,13 @@ This will call gatling.sh and runs the simulation specified with the -s flag.
  
 Results will then be output to `/tests/gatling-2.3.1/results`.
  
-This will create a nice little dashboard with charts which you can view by opening the generated index.html file in a browser. 
+This will create a nice little dashboard with charts which you can view by opening the generated index.html file in a browser. The charts will look something like this:
+
+<img src="./images/gatling-charts-1.png" width="650" />
+
+<img src="./images/gatling-charts-2.png" width="650" />
+
+<img src="./images/gatling-charts-3.png" width="650" />
  
 The tests in Gatling are called "simulations", and the simulation files are written in Scala (but don't be afraid of them!).
  
@@ -146,6 +171,20 @@ The main load test simulation for this project is located here: `tests/load/gatl
  
 _Note: Load tests are currently _**not**_ run as part of the CI pipeline._
   
+## Hot Vs Cold Functions
+It's very interesting to see just how much the response times of a Lambda function can vary for consecutive executions of the exact same Gatling simulation. For example, here's the results of test calling a 512mb Lambda function via a POST endpoint where I'm ramping up the number of users per second from 10 to 50 over 5 seconds.
+
+##### Gatling output, run 1:
+<img src="./images/gatling-run-1.png" width="650" />
+
+##### Gatling output, run 2:
+<img src="./images/gatling-run-2.png" width="650" />
+
+##### Gatling output, run 3:
+<img src="./images/gatling-run-3.png" width="650" />
+
+From the above screenshots we can see that in the first run, when the lambda is "cold", the average response time was 712ms with a worst case of 2331ms. In the second run, only about 10 seconds later, we can see times improve to an average response time of 376ms with an interestingly worse worst case than the first run. In the final run things look even better with an average response of 289ms and a worst case of only 1254. The key thing to remember is that there can cold lambdas can have some variability with execution duration, and the only way to get "hot" response times all the time is to have an endpoint with a large flow of consistent traffic.
+
   
 ## Amazon X-ray Performance Analysis 
 With each executive of a lambda function you get the total number of milliseconds for which you were billed, but there's no insight into what what going on during that time. Amazon X-ray is a neat service that shows a visual timeline of what's happening during you function execution so you can we how much time the nodejs engine took to start up, how much time each of your functions take to complete, etc. Note that this protect is not currently at up to use aws x-ray, but it would take only a few lives if cute to add it. Tools like Gatling are great for telling you if your service is slow but not _why_ it's slow. Once you see that your service is running to slowly, Amazon X-Ray is an excellent tool allow you to see what function of your coding are taking longest.
