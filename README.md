@@ -1,6 +1,6 @@
 # Titanium Lambda
 
-Welcome! Originally the brainchild of developer Jim Lynch, this project is meant to be an example of code and processes around the code that will lead to stable, robust, and successful Lambda functions. 
+_Titanium Lambda_ is an opinionated set of guidelines and processes for building stable, robust, and successful serverless functions. 
 
 
 ## Try the live api now!
