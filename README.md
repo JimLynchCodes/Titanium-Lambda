@@ -4,6 +4,15 @@ _Titanium Lambda_ is an opinionated set of guidelines and processes for building
 
 <img src="./images/Titanium Lambda Logo.png" width="300" />
 
+Key Features of Titanium Lambda Projects: 
+- Full CI / CD Pipeline with AWS CodePipeline or Travis CI.
+- Has 4 different types of automated tests written with Mocha + Chai.
+- Automated developer sugars like easlint, jsdoc, and git hooks.
+- Incorporates Serverless Framework for an alternative quick, convenient deployment. 
+- Solid disaster recovery strategies.
+- Perform regular load testing with Gatling.
+- Example project, code, and template files to use as a template.
+
 ## Example Project
 The lambda function triggers a service at the endpoint _ a REST API that you hit passing in a query parameter, "character". The service will then return a json object containing some data about a star wars character corresponding to that number: their name, hair cookie, and eye color. 
 
