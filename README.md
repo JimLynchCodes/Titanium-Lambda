@@ -2,7 +2,7 @@
 
 _Titanium Lambda_ is an opinionated set of guidelines and processes for building stable, robust, and successful serverless functions. 
 
-<img src="./images/Titanium Lambda Logo.png" width="300" />
+<img src="./images/Titanium Lambda Logo.png" width="250" />
 
 <hr/>
 
@@ -19,9 +19,8 @@ _Titanium Lambda_ is an opinionated set of guidelines and processes for building
 
 
 ## Example Project
-The lambda function triggers a service at the endpoint _ a REST API that you hit passing in a query parameter, "character". The service will then return a json object containing some data about a star wars character corresponding to that number: their name, hair cookie, and eye color. 
+This project is an example of a project that follows the Titanium Lambda guidelines. This specific lambda function is can be accessed as a REST API that you can call using a GET request with the query parameter, "character". The service will then return a json object containing some data about a star wars character corresponding to that number: their name, hair cookie, and eye color. 
 
-## Try the live api now!
 Try hitting the live endpoint via putting it in your browser address bar, ajax, curl, postman, or some other REST client!  
 
 https://ax7ezyq21m.execute-api.us-east-1.amazonaws.com/Prod?character=1
@@ -30,11 +29,15 @@ You can change the value of the _character_ query paramter in the url to an inte
 
 
 ## The Meta Project 
-The Stars Wars endpoint could be switched out for any asynchronous api (series / combination of api calls). This is a great example of how to make clean, thoroughly testsed Nodejs microserverices that are performant, efficient, and _actually_ do scale to any amount of traffic all on their own. This project is a specific start wars implementation of a more generic entrprise nodejs lambda architecture with automated tests, and integration with AWS devops services.
+The Star Wars endpoint could be switched out for any asynchronous api (or series / combination of api calls). This is a great example of how to make clean, thoroughly testsed Nodejs microserverices that are performant, efficient, and _actually_ do scale to any amount of traffic all on their own. This project is a tangible manifestation of the teachings of Titanium Lambda.
 
 
-## Why?
-This project was the result of Jim sitting down and saying, "if I was THE serverless guy for a company, and I needed to create a process for how we should build solid, thoroughly tested and dependable lambda services, how would I do it?". I've used popular CI platforms like Team City, Jenkins, or Travis, but I've found going all-out AWS leads to a nice and simple integration between your CI pipeline and the actual deployed lambda environment(s). Whenenver I need to start a new type of automated test I'll often come back here, copy/paste a simple test file, and go from there.
+## Why Titanium Lambda?
+When it comes to working with AWS Lambda, there are't a lot of "enterprise level" tutorials. Many people learn the basics, upload some code right into the web console, and stop there thinking that's all there is to building Lambda functions. It can be tough figuring out how to deploy efficiently, being disciplined enough to write all the various automated tests, and being aware of where to look when things go wrong. You want to step up your serverless game and build robust, legit Lambda functions then this guide is for you.
+
+
+# What are we selling?
+Nothing! Titanium Lambda is totally free to use and is not influenced by commercial interests. Titanium Lambda was a result of Jim Lynch working professionally with the tools, honing his skills, and over time formulating this guide as a way of organizing his thoughts and building somewhat of a "turnkey" development process for his own personal and professional lambda functions. If you like this project, feel free to [tweet to Jim](https://twitter.com/WebWhizJim) and say thanks. :)  
 
 
 ## The CodeStar Dashboard
