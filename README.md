@@ -36,8 +36,11 @@ The Star Wars endpoint could be switched out for any asynchronous api (or series
 When it comes to working with AWS Lambda, there are't a lot of "enterprise level" tutorials. Many people learn the basics, upload some code right into the web console, and stop there thinking that's all there is to building Lambda functions. It can be tough figuring out how to deploy efficiently, being disciplined enough to write all the various automated tests, and being aware of where to look when things go wrong. You want to step up your serverless game and build robust, legit Lambda functions then this guide is for you.
 
 
-# What are we selling?
+## What are we selling?
 Nothing! Titanium Lambda is totally free to use and is not influenced by commercial interests. Titanium Lambda was a result of Jim Lynch working professionally with the tools, honing his skills, and over time formulating this guide as a way of organizing his thoughts and building somewhat of a "turnkey" development process for his own personal and professional lambda functions. If you like this project, feel free to [tweet to Jim](https://twitter.com/WebWhizJim) and say thanks. :)  
+
+
+## Using a CI / CD Pipeline
 
 
 ## The CodeStar Dashboard
@@ -47,10 +50,6 @@ You can find the Codestar dashboard for this proejct[here](https://console.aws.a
 _(Note: You won't be able to acess the codestar dashboard unless specifically given permissions by Jim.)_
 
 <img src="./images/aws-codestar-dashboard.png" width="650" />
-
-
-## More Reasons Why Serverless is Awesome
-I do a lot of front-end javascript development, and honestly I find aws lambda nodejs to be way more fun and interesting. I love how serverless is so small and focused, and I think it just makes it that much easier to have 100% code coverage (not to mention you don't have all that view markup to worry about). I love that in serverless development you are quantitatively rewarded for making your code more efficient since you can measure the execution time and max memory used, comparing the numbers over time to find which version of the code works best.
 
 
 ## Optional "Impatient Deploy" With Serverless Framework
@@ -133,12 +132,12 @@ These correspond to the files in the e2e-tests/ folder in the root of this proje
 `npm run e2e-test`
 
 
-#### Rest endpoint e2e tests
+## Rest endpoint e2e tests
 These tests use the supertest library to hook into the express middleware and basically simulate firing the REST event 
 to your function and expecting that the correct response is returned, including headers and authotization-headers. These tests really try to covert the whole lambda function, beginning when the REST request first comes in and veryfying that the right response is sent from the lambda function back to the client. Since hese tests use the supertest library to hook into the express middleware they basically simulate firing the REST event to your function and then expect that the correct response is returned, including headers and authotization-headers.
 
 
-#### Small Integration Tests
+## Small Integration Tests
 These are similar to unit tests in that they aim to verify the correct return values for individual functions tested in 
 isolation. However, unlike unit tests which have side effects such as external requests mocked, these tests allow the functions to call the external apis without mocking or stubbing anything. If there is a problem or bug ocurring in the code directly around the your async code wrappers, these tests can really expose that.
 
