@@ -54,7 +54,7 @@ _(Note: You won't be able to acess the codestar dashboard unless specifically gi
 
 
 ## For Node.js And Beyond!
-This example project is built around a NodeJS microservice. However, there is no reason to limit the teachings of Titanium Lambda to only NodeJS when they apply pretty much equally well serverless functions written in any language. Indeed, even if you are using AWS CodeStar to scaffold out a microservice for AWS Lambda, in addition to NodeJs you have the option to use ~trash~ ___fine___ languages such as Python and Java (with Spring).  
+This example project is built around a NodeJS microservice. However, there is no reason to limit the teachings of Titanium Lambda to only NodeJS when they apply pretty much equally well serverless functions written in any language. Indeed, even if you are using AWS CodeStar to scaffold out a microservice for AWS Lambda, in addition to NodeJs you have the option to use ~trash~ ___fine___ languages such as Python and Java.  
 
 <img src="./images/CodeStar-Create-Lambda-Project-Screenshot.png" width="650" />
 
