@@ -41,6 +41,7 @@ Nothing! Titanium Lambda is totally free to use and is not influenced by commerc
 
 
 ## Using a CI / CD Pipeline
+When you are just building a project and have no users you can shoot from the hip, use only one environment, and deploy whatever and whenever you want. However, once you launch (and if you are lucky enough to have some real users) then it becomes a more dangerous game. The stakes are higher and it becomes critical to not push bugs to the users yet keep the same rapid deployment pace. A great way to do this is to use a continuous integration pipeline that is connected to git. It will automatically pick up code when a push or merge occurs on a certain branch, run your tests, create a fresh build, and deploy to a dev environment. Then there should be some manual "big red button" to copy the dev environment build over to production. Since it is already tightly ingrained in the AWS ecosystem and works well with AWS Lambda, the Titanium Lambda official first choice for CI provider is AWS CodePipeline.  
 
 
 ## The CodeStar Dashboard
@@ -257,3 +258,6 @@ Imagine your Lambdas singing along to the lyrics:
 Thanks to all the contributors who have helped make this project awesome!
 
 If you are new to this project, feel free to open issues with questions or suggestions, join our [slack group](https://join.slack.com/t/titaniumlambda/shared_invite/enQtMzc2ODQ4ODgyNjI4LTQyYzc4Mzc4Yzg2YmZkZGU2ZGFlMjliNmQ3MmVjYmQwYzkxZGUwZDVlZWNhNTNlODg0NTk2Yzc1YWYyNzliYWQ), and if you like this repo please give it a star!
+
+## License
+MIT
