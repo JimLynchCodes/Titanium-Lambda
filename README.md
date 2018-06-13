@@ -68,7 +68,7 @@ First, install the serverless npm module globally:
 
 `npm i serverless -g`
 
-You will also need to provide access to the cli tools so they can push to your AWS account. This can be done with the aws cli _configure_ command:
+You will also need to provide your access keys to the AWS cli tool so that serverless knows to push to _your_ AWS account. This can be done with the aws cli _configure_ command:
 
 `aws configure`
 
