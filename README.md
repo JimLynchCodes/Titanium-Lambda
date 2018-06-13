@@ -1,6 +1,6 @@
 # Titanium Lambda
 
-_Titanium Lambda_ is an opinionated set of guidelines and processes for building stable, robust, and successful serverless functions. 
+_Titanium Lambda_ is an opinionated set of guidelines, processes, and boilerplate code for building stable, robust, and successful serverless functions. 
 
 <img src="./images/Titanium Lambda Logo.png" width="250" />
 
