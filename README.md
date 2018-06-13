@@ -76,6 +76,10 @@ Then you can deploy like this:
 
 `serverless deploy`
 
+## Handling Args
+There are a few different ways one can invoke a Lambda function, and each of them have their own way of passing in arguments, or input paramters, to your function. Titanium Lambda aims to make this easy on you, the developer, by boiling all these input sources into one variables, `args`, that contains the object of data passed that would be expect.
+
+(ie. query paramters for a GET request, erquest body for POST, lambda console test event object). 
 
 ## Easy DevOps AWS CodePipeline
 
