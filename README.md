@@ -220,6 +220,8 @@ With each executive of a lambda function you get the total number of millisecond
 
 <img src="./images/aws-x-ray-lambda.png" width="650" />
 
+Note: Currently there is no xray setup in the code (now accepting pull requests. haha)
+
 ## JsDoc
 I'm definitely a fan of making your code more readable and easier to understand. I've tried to annotate my functions in this project with descriptions and @param / @return type descriptions. 
 
