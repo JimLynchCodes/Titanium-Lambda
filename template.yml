@@ -16,6 +16,7 @@ Resources:
       Runtime: nodejs6.10
       MemorySize: 512
       Timeout: 5
+      AutoPublishAlias: Latest
       Environment:
         Variables:
           NODE_ENV: production
