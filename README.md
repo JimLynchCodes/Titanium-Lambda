@@ -129,6 +129,20 @@ Notice that right now this template project has 100% test coverage!
 <img src="./images/code-coverage-100.png" width="650" />
 
 
+___As a general rule of thumb, there should be at least one unit test for every function in your src folder!___
+
+
+## Integration Tests
+These are similar to unit tests in that they aim to verify the correct return values for individual functions tested in 
+isolation. However, unlike unit tests which have side effects such as external requests mocked, these tests allow the functions to call the external apis without mocking or stubbing anything. If there is a problem or bug ocurring in the code directly around the your async code wrappers, these tests can really expose that.
+
+___As a general rule of thumb, there should be an integration test for every function that returns a promise (or promise-like object)!___
+
+
+## Smoke Tests
+These tests use the supertest library to hook into the express middleware and basically simulate firing the REST event 
+to your function and expecting that the correct response is returned, including headers and authotization-headers. These tests really try to covert the whole lambda function, beginning when the REST request first comes in and veryfying that the right response is sent from the lambda function back to the client. Since hese tests use the supertest library to hook into the express middleware they basically simulate firing the REST event to your function and then expect that the correct response is returned, including headers and authotization-headers.
+
 
 ## E2e Tests
 
@@ -141,16 +155,6 @@ two types of e2e tests:
 
 These correspond to the files in the e2e-tests/ folder in the root of this project. They are both run with the command:
 `npm run e2e-test`
-
-
-## Rest endpoint e2e tests
-These tests use the supertest library to hook into the express middleware and basically simulate firing the REST event 
-to your function and expecting that the correct response is returned, including headers and authotization-headers. These tests really try to covert the whole lambda function, beginning when the REST request first comes in and veryfying that the right response is sent from the lambda function back to the client. Since hese tests use the supertest library to hook into the express middleware they basically simulate firing the REST event to your function and then expect that the correct response is returned, including headers and authotization-headers.
-
-
-## Small Integration Tests
-These are similar to unit tests in that they aim to verify the correct return values for individual functions tested in 
-isolation. However, unlike unit tests which have side effects such as external requests mocked, these tests allow the functions to call the external apis without mocking or stubbing anything. If there is a problem or bug ocurring in the code directly around the your async code wrappers, these tests can really expose that.
 
 
 ## BDD Tests
