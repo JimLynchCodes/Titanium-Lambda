@@ -1,6 +1,6 @@
 # Titanium Lambda
 
-_Titanium Lambda_ is an opinionated set of guidelines, processes, and boilerplate code for building stable, robust, and successful serverless functions. 
+_Titanium Lambda_ is a set of guidelines and boilerplate code for building stable, robust, and successful serverless functions. 
 
 <img src="./images/Titanium Lambda Logo.png" width="250" />
 
@@ -254,6 +254,17 @@ http://docs.aws.amazon.com/codestar/latest/userguide/welcome.html
 
 AWS CodeStar Forum: https://forums.aws.amazon.com/forum.jspa?forumID=248
 
+
+## Versioning, Tagging, And Releasing
+It is a very good practice to mark your codebase a different points in tinge when you release a new version. This can help tremendously when you want to go back to previous versions, when you have multiple versions in production at once, and when you want to see some history of previous releases. It's pretty straightforward to create a release with git by using the _git tag_ command.
+
+'git tag v1.0.0'
+
+Don't forget to push your tag too.
+
+'git push origin master v1.0.0'
+
+At one time github had this nice little box in the margin on the "releases" page of the git repos you own.It recommends using semantic versioning with three numbers loosely representing _major version_, _new feature_, and _bugfix_. They also recommend beginning your version names with a "v" which is not really necessary, but personally I like this and folloAt w this convention. the very least you should have some consistent naming convention for all versions in a given project.
 
 ## Why "Titanium"?
 Titanium is one of the densest materials on earth. It has been battle-tested and is used for the most extreme industries such artillery, military, and aerospace. Titanium is also especially recognized for its high strength-to-weight ratio, and it thinks a parrallel can be drawn with Lambda functions as they are meant to be both super powerful / scalable yet very lightweight.
