@@ -61,7 +61,7 @@ package:
 #    - exclude-me-dir/**
 
 functions:
-  hello:
+  Lambda:
     handler: index.handler
 
 #    The following are a few example events you can configure
