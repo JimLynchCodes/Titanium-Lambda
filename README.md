@@ -28,6 +28,26 @@ https://ax7ezyq21m.execute-api.us-east-1.amazonaws.com/Prod?character=1
 You can change the value of the _character_ query paramter in the url to an integer between 1 and 10 (other numbers work, but it officially supports 1 through 10). The service then calls out to the [star wars api](https://swapi.co/), parses the result, and returns the character's name, eye color, and hair color.
 
 
+## DR (Disaster Recovery)
+Realizing that there are issues with the code in your live, production environment is never fun, but it can happen to anyone. Instead of sheepily praying that it will never happen to you we recommend preparing for this situation early so you will know exactly what to do and (hopefully) won't be franticly scrambling in the heat of the moment. So, let's suppose a user / business analyst / tester / CEO of your company says they think think is an issue with your Lambda function. What to you do?
+
+### 1) Recreate / Confirm the Issue.
+
+### 2) Check the Lambda Console Metrics & Graphs (Especially _Errors_ & _Duration_).
+
+### 3) Check the Logs.
+
+### 4) Rollback Endpoints in API Gateway (if necessary).
+
+### 5) Determine If Automated Tests For The Issue Can Be Added.
+
+### 6) Make Changes, Run Tests, Verify Stable Staging Environment
+
+### 7) Push Fixes to Prod
+
+### 8) Repeat Steps 1, 2, and 3.
+
+
 ## The Meta Project 
 The Star Wars endpoint could be switched out for any asynchronous api (or series / combination of api calls). This is a great example of how to make clean, thoroughly testsed Nodejs microserverices that are performant, efficient, and _actually_ do scale to any amount of traffic all on their own. This project is a tangible manifestation of the teachings of Titanium Lambda.
 
@@ -238,6 +258,8 @@ Note: Currently there is no xray setup in the code (now accepting pull requests.
 ## JsDoc
 I'm definitely a fan of making your code more readable and easier to understand. I've tried to annotate my functions in this project with descriptions and @param / @return type descriptions. 
 
+@TODO - Add tips for generating and hosting jsdoc reports to this guide.
+
 
 ## Included Files for AWS DevOps Pipeline
 
@@ -246,26 +268,6 @@ I'm definitely a fan of making your code more readable and easier to understand.
 * template.yml - this file contains the AWS Serverless Application Model (AWS SAM) used
   by AWS CloudFormation to deploy your service to AWS Lambda and Amazon API
   Gateway.
-
-
-## More AWS Links
-
-Learn more about AWS CodeBuild and how it builds and tests your application here:
-https://docs.aws.amazon.com/codebuild/latest/userguide/concepts.html
-
-Learn more about AWS Serverless Application Model (AWS SAM) and how it works here:
-https://github.com/awslabs/serverless-application-model/blob/master/HOWTO.md
-
-AWS Lambda Developer Guide:
-http://docs.aws.amazon.com/lambda/latest/dg/deploying-lambda-apps.html
-
-Learn more about AWS CodeStar by reading the user guide, and post questions and
-comments about AWS CodeStar on our forum.
-
-AWS CodeStar User Guide:
-http://docs.aws.amazon.com/codestar/latest/userguide/welcome.html
-
-AWS CodeStar Forum: https://forums.aws.amazon.com/forum.jspa?forumID=248
 
 
 ## Versioning, Tagging, And Releasing
@@ -279,8 +281,10 @@ Don't forget to push your tag too.
 
 At one time github had this nice little box in the margin on the "releases" page of the git repos you own.It recommends using semantic versioning with three numbers loosely representing _major version_, _new feature_, and _bugfix_. They also recommend beginning your version names with a "v" which is not really necessary, but personally I like this and folloAt w this convention. the very least you should have some consistent naming convention for all versions in a given project.
 
+
 ## Why "Titanium"?
 Titanium is one of the densest materials on earth. It has been battle-tested and is used for the most extreme industries such artillery, military, and aerospace. Titanium is also especially recognized for its high strength-to-weight ratio, and it thinks a parrallel can be drawn with Lambda functions as they are meant to be both super powerful / scalable yet very lightweight.
+
 
 ## Official Song
 The official song of the Titanium Lambda project is [Titanium by David Guetta & Sia](https://www.youtube.com/watch?v=JRfuAukYTKg).
