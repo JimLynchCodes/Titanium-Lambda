@@ -31,21 +31,21 @@ You can change the value of the _character_ query paramter in the url to an inte
 ## DR (Disaster Recovery)
 Realizing that there are issues with the code in your live, production environment is never fun, but it can happen to anyone. Instead of sheepily praying that it will never happen to you we recommend preparing for this situation early so you will know exactly what to do and (hopefully) won't be franticly scrambling in the heat of the moment. So, let's suppose a user / business analyst / tester / CEO of your company says they think think is an issue with your Lambda function. What to you do?
 
-### 1) Recreate / Confirm the Issue.
+#### 1) Recreate / Confirm the Issue.
 
-### 2) Check the Lambda Console Metrics & Graphs (Especially _Errors_ & _Duration_).
+#### 2) Check the Lambda Console Metrics & Graphs (Especially _Errors_ & _Duration_).
 
-### 3) Check the Logs.
+#### 3) Check the Logs.
 
-### 4) Rollback Endpoints in API Gateway (if necessary).
+#### 4) Rollback Endpoints in API Gateway (if necessary).
 
-### 5) Determine If Automated Tests For The Issue Can Be Added.
+#### 5) Determine If Automated Tests For The Issue Can Be Added.
 
-### 6) Make Changes, Run Tests, Verify Stable Staging Environment
+#### 6) Make Changes, Run Tests, Verify Stable Staging Environment
 
-### 7) Push Fixes to Prod
+#### 7) Push Fixes to Prod
 
-### 8) Repeat Steps 1, 2, and 3.
+#### 8) Repeat Steps 1, 2, and 3.
 
 
 ## The Meta Project 
