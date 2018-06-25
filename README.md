@@ -58,6 +58,15 @@ This example project is built around a NodeJS microservice. However, there is no
 
 <img src="./images/CodeStar-Create-Lambda-Project-Screenshot.png" width="650" />
 
+## The Many "App.js" Files
+It is extremely common in the express framework to store the webserver created by express in a variable named _app._
+
+```
+const app = express()
+```
+
+It is also a common pattern to use `app.js` as the name core, root file that creates this server and handles some various endpionts. Your project should only have one _app.js_ file, and we actually recommond calling it simply _app.js_ (no need to get fancy here in your own projects). In this project, however, I don't have a filed with the short _app.js_ name. Instead, this project contains many files that begin with `app`. The purpose of this is to give you, the developer modeling your project after Titanium Lambda, the option to choose the app.js file that best fits your situation. 
+
 
 ## Optional "Impatient Deploy" With Serverless Framework
 Although having Amazon's CodePipeline hooked up to this project is pretty awesome, the waiting time for the stages of CodePipeline can just be too unbearably slow for me.
