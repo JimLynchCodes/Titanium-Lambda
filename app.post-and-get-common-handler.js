@@ -28,26 +28,23 @@ handleRequest = (args, res) => {
 }
 
 app.get('/', (req, res) => {
-  console.log('Handling User-Embed GET request on ' + process.env.Environment + ' with args: ', args)
-
   let args = app.inputObjectOverride
-
   if (req.apiGateway)
     args = req.apiGateway.event.queryStringParameters || req.apiGateway.event
 
+  console.log('Handling User-Embed GET request on ' + process.env.Environment + ' with args: ', args)
+  
   handleRequest(args, res)
 })
 
 app.post('/', (req, res) => {
-  console.log('Handling User-Embed POST request on ' + process.env.Environment + ' with args: ', args)
-
   let args = app.inputObjectOverride
-
   if (req.apiGateway)
     args = req.body || req.apiGateway
 
-  handleRequest(args, res)
+  console.log('Handling User-Embed POST request on ' + process.env.Environment + ' with args: ', args)
 
+  handleRequest(args, res)
 })
 
 module.exports = app
