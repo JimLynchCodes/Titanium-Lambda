@@ -35,9 +35,9 @@ Realizing that there are issues with the code in your live, production environme
 
 #### 2) Check the Lambda Console Metrics & Graphs (Especially _Errors_ & _Duration_).
 
-<img src="./images/little-metrics-lambda.png" width="250" />
+<img src="./images/little-metrics-lambda.png" width="600" />
 
-<img src="./images/cloudwatch-metrics-chart.png" width="250" />
+<img src="./images/cloudwatch-metrics-chart.png" width="600" />
 
 #### 3) Check the Logs.
 
