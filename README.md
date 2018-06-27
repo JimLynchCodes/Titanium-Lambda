@@ -35,6 +35,10 @@ Realizing that there are issues with the code in your live, production environme
 
 #### 2) Check the Lambda Console Metrics & Graphs (Especially _Errors_ & _Duration_).
 
+<img src="./images/little-metrics-lambda.png" width="250" />
+
+<img src="./images/cloudwatch-metrics-chart.png" width="250" />
+
 #### 3) Check the Logs.
 
 #### 4) Rollback Endpoints in API Gateway (if necessary).
