@@ -28,30 +28,6 @@ https://ax7ezyq21m.execute-api.us-east-1.amazonaws.com/Prod?character=1
 You can change the value of the _character_ query paramter in the url to an integer between 1 and 10 (other numbers work, but it officially supports 1 through 10). The service then calls out to the [star wars api](https://swapi.co/), parses the result, and returns the character's name, eye color, and hair color.
 
 
-## DR (Disaster Recovery)
-Realizing that there are issues with the code in your live, production environment is never fun, but it can happen to anyone. Instead of sheepily praying that it will never happen to you we recommend preparing for this situation early so you will know exactly what to do and (hopefully) won't be franticly scrambling in the heat of the moment. So, let's suppose a user / business analyst / tester / CEO of your company says they think think is an issue with your Lambda function. What to you do?
-
-#### 1) Recreate / Confirm the Issue.
-
-#### 2) Check the Lambda Console Metrics & Graphs (Especially _Errors_ & _Duration_).
-
-<img src="./images/little-metrics-lambda.png" width="600" />
-
-<img src="./images/cloudwatch-metrics-chart.png" width="600" />
-
-#### 3) Check the Logs.
-
-#### 4) Rollback Endpoints in API Gateway (if necessary).
-
-#### 5) Determine If Automated Tests For The Issue Can Be Added.
-
-#### 6) Make Changes, Run Tests, Verify Stable Staging Environment
-
-#### 7) Push Fixes to Prod
-
-#### 8) Repeat Steps 1, 2, and 3.
-
-
 ## The Meta Project 
 The Star Wars endpoint could be switched out for any asynchronous api (or series / combination of api calls). This is a great example of how to make clean, thoroughly testsed Nodejs microserverices that are performant, efficient, and _actually_ do scale to any amount of traffic all on their own. This project is a tangible manifestation of the teachings of Titanium Lambda.
 
@@ -284,6 +260,30 @@ Don't forget to push your tag too.
 'git push origin master v1.0.0'
 
 At one time github had this nice little box in the margin on the "releases" page of the git repos you own.It recommends using semantic versioning with three numbers loosely representing _major version_, _new feature_, and _bugfix_. They also recommend beginning your version names with a "v" which is not really necessary, but personally I like this and folloAt w this convention. the very least you should have some consistent naming convention for all versions in a given project.
+
+
+## DR (Disaster Recovery)
+Realizing that there are issues with the code in your live, production environment is never fun, but it can happen to anyone. Instead of sheepily praying that it will never happen to you we recommend preparing for this situation early so you will know exactly what to do and (hopefully) won't be franticly scrambling in the heat of the moment. So, let's suppose a user / business analyst / tester / CEO of your company says they think think is an issue with your Lambda function. What to you do?
+
+#### 1) Recreate / Confirm the Issue.
+
+#### 2) Check the Lambda Console Metrics & Graphs (Especially _Errors_ & _Duration_).
+
+<img src="./images/little-metrics-lambda.png" width="600" />
+
+<img src="./images/cloudwatch-metrics-chart.png" width="600" />
+
+#### 3) Check the Logs.
+
+#### 4) Rollback Endpoints in API Gateway (if necessary).
+
+#### 5) Determine If Automated Tests For The Issue Can Be Added.
+
+#### 6) Make Changes, Run Tests, Verify Stable Staging Environment
+
+#### 7) Push Fixes to Prod
+
+#### 8) Repeat Steps 1, 2, and 3.
 
 
 ## Why "Titanium"?
