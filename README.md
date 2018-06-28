@@ -19,7 +19,7 @@ _Titanium Lambda_ is a set of guidelines and boilerplate code for building stabl
 
 
 ## Example Project
-This project is an example of a project that follows the Titanium Lambda guidelines. This specific lambda function is can be accessed as a REST API that you can call using a GET request with the query parameter, "character". The service will then return a json object containing some data about a star wars character corresponding to that number: their name, hair cookie, and eye color. 
+This project is an example of a project that follows the Titanium Lambda guidelines. This specific lambda function can be accessed as a REST API that you can call using a GET request with the query parameter, "character". The service will then return a json object containing some data about a star wars character corresponding to that number: their name, hair cookie, and eye color. 
 
 Try hitting the live endpoint via putting it in your browser address bar, ajax, curl, postman, or some other REST client!  
 
@@ -45,9 +45,9 @@ When you are just building a project and have no users you can shoot from the hi
 
 
 ## The CodeStar Dashboard
-There are various ways of starting your project, but Titanium Lambda recommends using [AWS CodeStar](https://aws.amazon.com/codestar/). basically sets up CodePipeline for you, provisions some resources, and provides you with a nice dashboard for monitoring your project.
+There are various ways of starting your project, but Titanium Lambda recommends using [AWS CodeStar](https://aws.amazon.com/codestar/). CodeStar basically sets up CodePipeline for you, provisions some resources, and provides you with a nice dashboard for monitoring your project.
 
-You can find the Codestar dashboard for this proejct[here](https://console.aws.amazon.com/codestar/home?region=us-east-1#/projects/jims-cepsnlm/dashboard). 
+You can find the Codestar dashboard for this project[here](https://console.aws.amazon.com/codestar/home?region=us-east-1#/projects/jims-cepsnlm/dashboard). 
 _(Note: You won't be able to acess the codestar dashboard unless specifically given permissions by Jim.)_
 
 <img src="./images/aws-codestar-dashboard.png" width="650" />
@@ -65,7 +65,7 @@ It is extremely common in the express framework to store the webserver created b
 const app = express()
 ```
 
-It is also a common pattern to use `app.js` as the name core, root file that creates this server and handles some various endpionts. Your project should only have one _app.js_ file, and we actually recommond calling it simply _app.js_ (no need to get fancy here in your own projects). In this project, however, I don't have a filed with the short _app.js_ name. Instead, this project contains many files that begin with `app`. The purpose of this is to give you, the developer modeling your project after Titanium Lambda, the option to choose the app.js file that best fits your situation. 
+It is also a common pattern to use `app.js` as the name core, root file that creates this server and handles some various endpoints. Your project should only have one _app.js_ file, and we actually recommond calling it simply _app.js_ (no need to get fancy here in your own projects). In this project, however, I don't have a file with the short _app.js_ name. Instead, this project contains many files that begin with `app`. The purpose of this is to give you, the developer modeling your project after Titanium Lambda, the option to choose the app.js file that best fits your situation. 
 
 
 ## Optional "Impatient Deploy" With Serverless Framework
@@ -88,33 +88,33 @@ Then you can deploy like this:
 ## Handling Args
 There are a few different ways one can invoke a Lambda function, and each of them have their own way of passing in arguments, or input paramters, to your function. Titanium Lambda aims to make this easy on you, the developer, by boiling all these input sources into one variables, `args`, that contains the object of data passed that would be expect.
 
-(ie. query paramters for a GET request, erquest body for POST, lambda console test event object). 
+(ie. query paramters for a GET request, request body for POST, lambda console test event object). 
 
 ## Easy DevOps AWS CodePipeline
 
 <img src="./images/aws-code-pipeline.png" width="650" />
 
-When you make a project with AWS Codestar is automtaically sets up CodePipeline which is a configurable, flexible build, test, and deploy pipeline to which one can add or remove any number of steps. I think my ideal pipeline steps would look something like this.
+When you make a project with AWS Codestar, it automatically sets up CodePipeline which is a configurable, flexible build, test, and deploy pipeline to which one can add or remove any number of steps. I think my ideal pipeline steps would look something like this.
 
 
-- Run pre-commit hook (lint, unit tests, integration tests, smoke tests)
+- Run pre-commit hook (lint, unit tests, integration tests, smoke tests).
 - Commit code to the git repository.
 - Push code to git repository.
 - Code gets automatically picked up by AWS CodePipeline build server.
 - Runs pre-build tests (lint, unit tests, integration tests, smoke tests).
-- Generate JsDcoc.
+- Generate JsDoc.
 - Build project (using buildspec.yml file in project root).
-- Deploy to dev environment
+- Deploy to dev environment.
 - Run load tests against dev environment (optional).
 - Run e2e tests against live dev environment.
-- manually approve deployment from Dev to prod
-- deploy to prod
+- Manually approve deployment from Dev to prod.
+- Deploy to prod.
 
 
 ## Unit Tests
 
-The unit tests are meant to test functions in isolation, mocking basically all dependencies. The Unit tests make heavy 
-use of stubs and spies from the sinon.js library to ensure of one little "unit" of code at a time.
+The unit tests are meant to test functions in isolation, mocking basically all dependencies. The unit tests make heavy 
+use of stubs and spies from the sinon.js library to ensure one little "unit" of code at a time.
 
 If you don't have mocha installed globally, please do that first:
 
@@ -128,7 +128,7 @@ Then you can run the test and generate code coverage reports:
 
 `npm test-coverage`
 
-note: in order to run this have you have instabul installed globally:
+note: in order to run this you have to have instabul installed globally:
 
 `npm i -g istanbul`
 
@@ -143,14 +143,14 @@ ___As a general rule of thumb, there should be at least one unit test for every 
 
 ## Integration Tests
 These are similar to unit tests in that they aim to verify the correct return values for individual functions tested in 
-isolation. However, unlike unit tests which have side effects such as external requests mocked, these tests allow the functions to call the external apis without mocking or stubbing anything. If there is a problem or bug ocurring in the code directly around the your async code wrappers, these tests can really expose that.
+isolation. However, unlike unit tests which have side effects such as external requests mocked, these tests allow the functions to call the external apis without mocking or stubbing anything. If there is a problem or bug occurring in the code directly around the your async code wrappers, these tests can really expose that.
 
 ___As a general rule of thumb, there should be an integration test for every function that returns a promise (or promise-like object)!___
 
 
 ## Smoke Tests
 These tests use the supertest library to hook into the express middleware and basically simulate firing the REST event 
-to your function and expecting that the correct response is returned, including headers and authotization-headers. These tests really try to covert the whole lambda function, beginning when the REST request first comes in and veryfying that the right response is sent from the lambda function back to the client. Since hese tests use the supertest library to hook into the express middleware they basically simulate firing the REST event to your function and then expect that the correct response is returned, including headers and authotization-headers.
+to your function and expecting that the correct response is returned, including headers and authotization-headers. These tests really try to covert the whole lambda function, beginning when the REST request first comes in and veryfying that the right response is sent from the lambda function back to the client. Since these tests use the supertest library to hook into the express middleware they basically simulate firing the REST event to your function and then expect that the correct response is returned, including headers and authotization-headers.
 
 
 ## E2e Tests
@@ -167,14 +167,14 @@ These correspond to the files in the e2e-tests/ folder in the root of this proje
 
 
 ## BDD Tests
-Bevaior driven development is awsome! But when it comes to the code, what does bdd really mean? In the world of Nodejs it
-basically comes to to using CucumberJS to run your "feature files" and "step definition files". Although I haven't yet 
+Behavior driven development is awesome! But when it comes to the code, what does bdd really mean? In the world of Nodejs it
+basically comes to using CucumberJS to run your "feature files" and "step definition files". Although I haven't yet 
 added npm scripts to execute the bdd tests, I have an example feature file that you might use for this project. Feature files are awesome because they are written in Gherkin syntax. This reads like plain english, but can also be executed from the command line just like other automated tests. 
 
 
 ## Performance Tests
 
-When it comes to aws lambda functions, you can quantitatively measure the performane of every execution with two numbers: __max memory used__ and __duration of function execution__. Measuring the performance of aws lambda functions is actually very easy since every execution of your aws lambda function will output these numbers in the cloudwatch logs (and in the aws lambda console if invoking the function from there). I don't currently have an automated script for performance tests like I do for the other automated tests, but to me performance is something to look at, compare, and improve over time as the function is in use.
+When it comes to aws lambda functions, you can quantitatively measure the performance of every execution with two numbers: __max memory used__ and __duration of function execution__. Measuring the performance of aws lambda functions is actually very easy since every execution of your aws lambda function will output these numbers in the cloudwatch logs (and in the aws lambda console if invoking the function from there). I don't currently have an automated script for performance tests like I do for the other automated tests, but to me performance is something to look at, compare, and improve over time as the function is in use.
 
 ## Load Tests with Gatling
 For load testing REST endpoints my favorite tool is [Gatling](https://gatling.io/). It's very awesome for a number of reasons:
@@ -225,11 +225,11 @@ It's very interesting to see just how much the response times of a Lambda functi
 ##### Gatling output, run 3:
 <img src="./images/gatling-run-3.png" width="650" />
 
-From the above screenshots we can see that in the first run, when the lambda is "cold", the average response time was 712ms with a worst case of 2331ms. In the second run, only about 10 seconds later, we can see times improve to an average response time of 376ms with an interestingly worse worst case than the first run. In the final run things look even better with an average response of 289ms and a worst case of only 1254. The key thing to remember is that there can cold lambdas can have some variability with execution duration, and the only way to get "hot" response times all the time is to have an endpoint with a large flow of consistent traffic.
+From the above screenshots we can see that in the first run, when the lambda is "cold", the average response time was 712ms with a worst case of 2331ms. In the second run, only about 10 seconds later, we can see times improve to an average response time of 376ms with an interestingly worse worst case than the first run. In the final run things look even better with an average response of 289ms and a worst case of only 1254. The key thing to remember is that cold lambdas can have some variability with execution duration, and the only way to get "hot" response times all the time is to have an endpoint with a large flow of consistent traffic.
 
   
 ## Amazon X-ray Performance Analysis 
-With each executive of a lambda function you get the total number of milliseconds for which you were billed, but there's no insight into what what going on during that time. Amazon X-ray is a neat service that shows a visual timeline of what's happening during you function execution so you can we how much time the nodejs engine took to start up, how much time each of your functions take to complete, etc. Note that this protect is not currently at up to use aws x-ray, but it would take only a few lives if cute to add it. Tools like Gatling are great for telling you if your service is slow but not _why_ it's slow. Once you see that your service is running to slowly, Amazon X-Ray is an excellent tool allow you to see what function of your coding are taking longest.
+With each execution of a lambda function you get the total number of milliseconds for which you were billed, but there's no insight into what what going on during that time. Amazon X-ray is a neat service that shows a visual timeline of what's happening during your function execution so you can see how much time the nodejs engine took to start up, how much time each of your functions take to complete, etc. Note that this protect is not currently up to use aws x-ray, but it would take only a few lines of code to add it. Tools like Gatling are great for telling you if your service is slow but not _why_ it's slow. Once you see that your service is running too slowly, Amazon X-Ray is an excellent tool to allow you to see what functions of your code are taking longest.
 
 <img src="./images/aws-x-ray-lambda.png" width="650" />
 
@@ -251,7 +251,7 @@ I'm definitely a fan of making your code more readable and easier to understand.
 
 
 ## Versioning, Tagging, And Releasing
-It is a very good practice to mark your codebase a different points in tinge when you release a new version. This can help tremendously when you want to go back to previous versions, when you have multiple versions in production at once, and when you want to see some history of previous releases. It's pretty straightforward to create a release with git by using the _git tag_ command.
+It is a very good practice to mark your codebase at different points in timee when you release a new version. This can help tremendously when you want to go back to previous versions, when you have multiple versions in production at once, and when you want to see some history of previous releases. It's pretty straightforward to create a release with git by using the _git tag_ command.
 
 'git tag v1.0.0'
 
@@ -259,11 +259,11 @@ Don't forget to push your tag too.
 
 'git push origin master v1.0.0'
 
-At one time github had this nice little box in the margin on the "releases" page of the git repos you own.It recommends using semantic versioning with three numbers loosely representing _major version_, _new feature_, and _bugfix_. They also recommend beginning your version names with a "v" which is not really necessary, but personally I like this and folloAt w this convention. the very least you should have some consistent naming convention for all versions in a given project.
+At one time github had this nice little box in the margin on the "releases" page of the git repos you own.It recommends using semantic versioning with three numbers loosely representing _major version_, _new feature_, and _bugfix_. They also recommend beginning your version names with a "v" which is not really necessary, but personally I like this and follow this convention. At the very least you should have some consistent naming convention for all versions in a given project.
 
 
 ## DR (Disaster Recovery)
-Realizing that there are issues with the code in your live, production environment is never fun, but it can happen to anyone. Instead of sheepily praying that it will never happen to you we recommend preparing for this situation early so you will know exactly what to do and (hopefully) won't be franticly scrambling in the heat of the moment. So, let's suppose a user / business analyst / tester / CEO of your company says they think think is an issue with your Lambda function. What to you do?
+Realizing that there are issues with the code in your live, production environment is never fun, but it can happen to anyone. Instead of sheepily praying that it will never happen to you we recommend preparing for this situation early so you will know exactly what to do and (hopefully) won't be franticly scrambling in the heat of the moment. So, let's suppose a user / business analyst / tester / CEO of your company says they think there is an issue with your Lambda function. What to you do?
 
 #### 1) Recreate / Confirm the Issue.
 
@@ -279,9 +279,9 @@ Realizing that there are issues with the code in your live, production environme
 
 #### 5) Determine If Automated Tests For The Issue Can Be Added.
 
-#### 6) Make Changes, Run Tests, Verify Stable Staging Environment
+#### 6) Make Changes, Run Tests, Verify Stable Staging Environment.
 
-#### 7) Push Fixes to Prod
+#### 7) Push Fixes to Prod.
 
 #### 8) Repeat Steps 1, 2, and 3.
 
