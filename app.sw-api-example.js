@@ -31,17 +31,7 @@ app.getHandler = function (req, res) {
   });
 
   return app.starWarsFunctions.getCharacterData(app.lambdaParams.character).then(characterData => {
-
-    console.log('about to send')
-
     res.send(characterData);
-
-    console.log('data sent!')
-
-    res.send({'more': 'stuff'});
-
-    console.log('more data sent!')
-
   }, err => {
     res.send(err);
   });
