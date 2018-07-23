@@ -17,7 +17,6 @@ _Titanium Lambda_ is a set of guidelines and boilerplate code for building stabl
 
 <hr>
 
-
 ## Example Project
 This project is an example of a project that follows the Titanium Lambda guidelines. This specific lambda function is can be accessed as a REST API that you can call using a GET request with the query parameter, "character". The service will then return a json object containing some data about a star wars character corresponding to that number: their name, hair cookie, and eye color. 
 
