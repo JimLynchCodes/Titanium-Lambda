@@ -202,11 +202,11 @@ Results will then be output to `/tests/gatling-2.3.1/results`.
  
 This will create a nice little dashboard with charts which you can view by opening the generated index.html file in a browser. The charts will look something like this:
 
-<img src="./images/gatling-charts-1.png" width="650" />
+<img src="./images/gatling-charts-1.png" width="675" />
 
-<img src="./images/gatling-charts-2.png" width="650" />
+<img src="./images/gatling-charts-2.png" width="675" />
 
-<img src="./images/gatling-charts-3.png" width="650" />
+<img src="./images/gatling-charts-3.png" width="675" />
  
 The tests in Gatling are called "simulations", and the simulation files are written in Scala (but don't be afraid of them!).
  
