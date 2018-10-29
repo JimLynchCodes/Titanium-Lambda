@@ -9,49 +9,19 @@ Parameters:
     Description: AWS CodeStar projectID used to associate new resources to team members
 
 Resources:
-  HelloWorld:
+  Lambda:
     Type: AWS::Serverless::Function
     Properties:
+      FunctionName: !Join ['-', ['fw', !Ref 'ProjectId']]
       Handler: index.handler
-      Runtime: nodejs6.10
+      Runtime: nodejs8.10
       MemorySize: 512
-      Timeout: 5
+      Timeout: 120
       AutoPublishAlias: Latest
       Environment:
         Variables:
           NODE_ENV: production
-      Role:
-        Fn::ImportValue:
-          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
-      Events:
-        GetEvent:
-          Type: Api
-          Properties:
-            Path: /
-            Method: get
-
-Role:
-        Fn::ImportValue:
-          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
-      Events:
-        GetEvent:
-          Type: Api
-          Properties:
-            Path: /
-            Method: get
-            RestApiId: !Ref RestApi
-        PostEvent:
-          Type: Api
-          Properties:
-            Path: /
-            Method: post
-            RestApiId: !Ref RestApi
-        OptionsEvent:
-          Type: Api
-          Properties:
-            Path: /
-            Method: options
-            RestApiId: !Ref RestApi
+      Role: arn:aws:iam::xxx:role/Worker-Lambda
 
   RestApi:
     Type: AWS::Serverless::Api
@@ -61,7 +31,7 @@ Role:
         swagger: "2.0"
         info:
           version: "1.0"
-          title: !Join ['-', ['aws-codestar', !Ref 'ProjectId', !Ref 'Environment']]
+          title: [!Ref 'ProjectId']
         host: "i4r9f0ntaf.execute-api.us-east-2.amazonaws.com"
         basePath: "/Stage"
         schemes:
@@ -69,30 +39,37 @@ Role:
         paths:
           /starwars-char-data:
             get:
-              responses: {}
+              responses:
+                "200":
+                  description: "200 response"
               security:
               - api_key: []
               x-amazon-apigateway-integration:
-                uri: ""
+                uri: !Join ['arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:xxx:function:', [!Ref 'ProjectId'], '/invocations']
                 passthroughBehavior: "when_no_match"
                 httpMethod: "GET"
                 type: "aws_proxy"
 
             post:
-              responses: {}
+              responses:
+                "200":
+                  description: "200 response"
               security:
               - api_key: []
               x-amazon-apigateway-integration:
-                uri: ""
+                'arn:aws:iam::133345006009:role/FW-Worker-Lambda'
+                uri: !Join ['arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:xxx:function:', [!Ref 'ProjectId'], '/invocations']
                 passthroughBehavior: "when_no_match"
                 httpMethod: "POST"
                 type: "aws_proxy"
             options:
-              responses: {}
+              responses:
+                "200":
+                  description: "200 response"
               x-amazon-apigateway-integration:
-                uri: ""
+                uri: !Join ['arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:xxx:function:', [!Ref 'ProjectId'], '/invocations']
                 passthroughBehavior: "when_no_match"
-                httpMethod: "OPTIONS"
+                httpMethod: "POST"
                 type: "aws_proxy"
         securityDefinitions:
           api_key:
