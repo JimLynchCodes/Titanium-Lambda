@@ -298,7 +298,7 @@ Imagine your Lambdas singing along to the lyrics:
 
   _`♪ You shoot me requests, but I won't fail! I AM TITAAAAANNNNNNIIIIIIIUUUUUUUUUUUMMMM! ♪`_
 
-## Thanks!
+## Thanks!!
 
 Thanks to all the contributors who have helped make this project awesome!
 
