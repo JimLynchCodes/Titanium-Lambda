@@ -47,12 +47,6 @@ When you are just building a project and have no users you can shoot from the hi
 ## The CodeStar Starter
 There are various ways of starting your project, but Titanium Lambda recommends using [AWS CodeStar](https://aws.amazon.com/codestar/) which basically sets up CodePipeline for you, provisions some resources, and provides you with a nice dashboard for monitoring your project. Titanium Lambda is an ideaology outside of the specific syntax in the boilerplate code so if one day it gets too old and crusty to actually deploy then you can always just use copy all the files from a codestar scallfold and start applying the Titanium Lambda principles there.
 
-You can find the Codestar dashboard for this proejct[here](https://console.aws.amazon.com/codestar/home?region=us-east-1#/projects/jims-cepsnlm/dashboard). 
-_(Note: You won't be able to acess the codestar dashboard unless specifically given permissions by Jim.)_
-
-<img src="./images/aws-codestar-dashboard.png" width="650" />
-
-
 ## For Node.js And Beyond!
 This example project is built around a NodeJS microservice. However, there is no reason to limit the teachings of Titanium Lambda to only NodeJS when they apply pretty much equally well serverless functions written in any language. Indeed, even if you are using AWS CodeStar to scaffold out a microservice for AWS Lambda, in addition to NodeJs you have the option to use ~trash~ ___fine___ languages such as Python and Java.  
 
