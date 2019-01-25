@@ -12,8 +12,11 @@ _Titanium Lambda_ is a set of guidelines and boilerplate code for building stabl
 - Automated developer sugars like easlint, jsdoc, and git hooks.
 - Incorporates Serverless Framework for an alternative quick, convenient deployment. 
 - Solid disaster recovery strategies.
-- Perform regular load testing with Gatling.
+- Steps to perform regular load testing with Gatling.
 - Example project, code, and template files to use as a template.
+- Documentation generator.
+- Automated logs management.
+- Automated "New Lambda" creation.
 
 <hr>
 
