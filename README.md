@@ -290,7 +290,6 @@ Lambda is excellent for request-response style CRUD operations, but it can't do 
 ## Why "Titanium"?
 Titanium is one of the densest materials on earth. It has been battle-tested and is used for the most extreme industries such artillery, military, and aerospace. Titanium is also especially recognized for its high strength-to-weight ratio, and it thinks a parrallel can be drawn with Lambda functions as they are meant to be both super powerful / scalable yet very lightweight.
 
-
 ## Official Song
 The official song of the Titanium Lambda project is [Titanium by David Guetta & Sia](https://www.youtube.com/watch?v=JRfuAukYTKg).
 
