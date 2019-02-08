@@ -284,6 +284,13 @@ Realizing that there are issues with the code in your live, production environme
 #### 8) Repeat Steps 1, 2, and 3.
 
 
+## Shepherding The Logs
+When your lambda functions run, the logs get stored in a handy little place within AWS called "Cloudwatch". However, this is quite a bad long-term storage place for you logs because 1. there is a max time duration, after which the logs will be deleted forever, and 2. filling up Cloudwatch with logs gets expensive pretty quickly. For many companies it makes sense to go with the quick and easy solution of hooking up your lambda functions to some SAS offering that will store and analyze your logs, often with extra charting and filtering tools to help you dig deeper into the logs. There are many srevices like this, including [DataDog](https://www.datadoghq.com), [Logz.io](https://logz.io), and [Sum Logic](https://www.sumologic.com). However, if you are more the type of person who would rather do it yourself rather than rely on one of this middleman logs management services, you could always set up another lambda function such that it set to run at some predefinied time interval (such as once each day) that corrals the previous day's logs and places them in a more efficient long term storage place (such as in S3).
+
+## Automating Log Management
+
+
+
 ## Can We Just Lambda All The Things?
 Lambda is excellent for request-response style CRUD operations, but it can't do streams or long-running applications. If you applications needs realtime updates to changes in the data then *__you should not use lambda__* for this. Instead, you should something that deals with streams such as [AWS Kinesis](https://aws.amazon.com/kinesis/data-streams/) or [MongoDb ChangeStreams](https://docs.mongodb.com/manual/changeStreams/). For this reason I would say no, most applications should not be built with only aws lambda but rather *__should be built with a combination of serverless functions and realtime streams__*. (Be on the lookout for the Titanium Kinesis Changstreams project!)
 
