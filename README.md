@@ -34,7 +34,6 @@ You can change the value of the _character_ query paramter in the url to an inte
 ## The Meta Project 
 The Star Wars endpoint could be switched out for any asynchronous api (or series / combination of api calls). This is a great example of how to make clean, thoroughly testsed Nodejs microserverices that are performant, efficient, and _actually_ do scale to any amount of traffic all on their own. This project is a tangible manifestation of the teachings of Titanium Lambda.
 
-
 ## Why Titanium Lambda?
 When it comes to working with AWS Lambda, there are't a lot of "enterprise level" tutorials. Many people learn the basics, upload some code right into the web console, and stop there thinking that's all there is to building Lambda functions. It can be tough figuring out how to deploy efficiently, being disciplined enough to write all the various automated tests, and being aware of where to look when things go wrong. If you want to step up your serverless game and build robust, legit Lambda functions then this guide is for you.
 
@@ -42,6 +41,9 @@ When it comes to working with AWS Lambda, there are't a lot of "enterprise level
 ## What Are We Selling?
 Nothing! Titanium Lambda is totally free to use and is not influenced by commercial interests. Titanium Lambda was a result of Jim Lynch working professionally with the tools, honing his skills, and over time formulating this guide as a way of organizing his thoughts and building somewhat of a "turnkey" development process for his own personal and professional lambda functions. If you like this project, feel free to [tweet to Jim](https://twitter.com/WebWhizJim) and say thanks. :)  
 
+## How To Use The Template Files
+
+// TODO
 
 ## Using a CI / CD Pipeline
 When you are just building a project and have no users you can shoot from the hip, use only one environment, and deploy whatever and whenever you want. However, once you launch (and if you are lucky enough to have some real users) then it becomes a more dangerous game. The stakes are higher and it becomes critical to not push bugs to the users yet keep the same rapid deployment pace. A great way to do this is to use a continuous integration pipeline that is connected to git. It will automatically pick up code when a push or merge occurs on a certain branch, run your tests, create a fresh build, and deploy to a dev environment. Then there should be some manual "big red button" to copy the dev environment build over to production. Since it is already tightly ingrained in the AWS ecosystem and works well with AWS Lambda, the Titanium Lambda official first choice for CI provider is AWS CodePipeline. However, the general guidelines of Titanium Lambda should be transferrable to any other CI platform, and it's more about how you use the pipeline rather than which one in particular you use. In an effort to prove that you can use more than just CodePipeline, the project also includes a configuration file for Travis CI (.travis.yml) in addition to the CI Pipeline config file (template.yml).
@@ -289,7 +291,7 @@ When your lambda functions run, the logs get stored in a handy little place with
 
 ## Automating Log Management
 
-
+// TODO
 
 ## Can We Just Lambda All The Things?
 Lambda is excellent for request-response style CRUD operations, but it can't do streams or long-running applications. If you applications needs realtime updates to changes in the data then *__you should not use lambda__* for this. Instead, you should something that deals with streams such as [AWS Kinesis](https://aws.amazon.com/kinesis/data-streams/) or [MongoDb ChangeStreams](https://docs.mongodb.com/manual/changeStreams/). For this reason I would say no, most applications should not be built with only aws lambda but rather *__should be built with a combination of serverless functions and realtime streams__*. (Be on the lookout for the Titanium Kinesis Changstreams project!)
