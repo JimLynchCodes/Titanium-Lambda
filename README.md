@@ -43,7 +43,17 @@ Nothing! Titanium Lambda is totally free to use and is not influenced by commerc
 
 ## How To Use The Template Files
 
-// TODO
+First, make sure you have the aws cli installed. Open up a linux shell and run:
+aws --version
+
+If you don't have it, you can check the docs here of do this:
+`brew install awscli`
+
+You'll need to set up the permissions that are specified in the template files. Specifically, in the template file "codebuild-config.json" change the value of ServiceRole to the arn of a role that you create in the aws console under cloudwatch -> roles. This role needs to have at permissions for basic lambda execution and any additions permissions that your function logic requires.
+
+You will also need to set up two more permissions in AWS for the pipeline and deployment configuration. In the file "pipeline-config.json" change the pipeline `roleArn` and the Deploy configuration `RoleArn`. 
+
+(Note: If you we don't have exact examples here or they become outdated, you can always use AWS Codestar to scaffold a new nodejs pipeline and lambda function. You can then see how those AWS permissions are set up are create similar ones).
 
 ## Using a CI / CD Pipeline
 When you are just building a project and have no users you can shoot from the hip, use only one environment, and deploy whatever and whenever you want. However, once you launch (and if you are lucky enough to have some real users) then it becomes a more dangerous game. The stakes are higher and it becomes critical to not push bugs to the users yet keep the same rapid deployment pace. A great way to do this is to use a continuous integration pipeline that is connected to git. It will automatically pick up code when a push or merge occurs on a certain branch, run your tests, create a fresh build, and deploy to a dev environment. Then there should be some manual "big red button" to copy the dev environment build over to production. Since it is already tightly ingrained in the AWS ecosystem and works well with AWS Lambda, the Titanium Lambda official first choice for CI provider is AWS CodePipeline. However, the general guidelines of Titanium Lambda should be transferrable to any other CI platform, and it's more about how you use the pipeline rather than which one in particular you use. In an effort to prove that you can use more than just CodePipeline, the project also includes a configuration file for Travis CI (.travis.yml) in addition to the CI Pipeline config file (template.yml).
