@@ -100,7 +100,7 @@ There are a few different ways one can invoke a Lambda function, and each of the
 (ie. query paramters for a GET request, erquest body for POST, lambda console test event object). 
 
 ## Easy DevOps AWS CodePipeline
-
+ 
 <img src="./images/aws-code-pipeline.png" width="650" />
 
 When you make a project with AWS Codestar is automtaically sets up CodePipeline which is a configurable, flexible build, test, and deploy pipeline to which one can add or remove any number of steps. I think my ideal pipeline steps would look something like this.
