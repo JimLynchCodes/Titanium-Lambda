@@ -1,0 +1,43 @@
+{
+    "name": "user-data-builder",
+    "description": "AWS CodeStar created CodeBuild Project for user-data-builder",
+    "source": {
+        "type": "CODEPIPELINE",
+        "insecureSsl": false
+    },
+    "artifacts": {
+        "type": "CODEPIPELINE",
+        "name": "user-data-builder",
+        "packaging": "ZIP"
+    },
+    "cache": {
+        "type": "NO_CACHE"
+    },
+    "environment": {
+        "type": "container",
+        "image": "aws/codebuild/eb-nodejs-6.10.0-amazonlinux-64:4.0.0",
+        "computeType": "small",
+        "environmentVariables": [
+            {
+                "name": "S3_BUCKET",
+                "value": "user-data-builder-pipeline",
+                "type": "PLAINTEXT"
+            },
+            {
+                "name": "WEBSITE_S3_PREFIX",
+                "value": "NoVal",
+                "type": "PLAINTEXT"
+            },
+            {
+                "name": "WEBSITE_S3_BUCKET",
+                "value": "NoVal",
+                "type": "PLAINTEXT"
+            }
+        ],
+        "privilegedMode": false
+    },
+    "serviceRole": "arn:aws:iam::xxx:role/Worker-CodeBuild",
+    "timeoutInMinutes": 60,
+    "tags": []
+}
+

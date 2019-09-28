@@ -1,0 +1,116 @@
+{
+  "pipeline": {
+    "name": "EXAMPLE-pipeline",
+    "roleArn": "arn:aws:iam::xxx:role/Worker-CodePipeline",
+    "artifactStore": {
+      "type": "S3",
+      "location": "EXAMPLE-pipeline"
+    },
+    "stages": [
+      {
+        "name": "Source",
+        "actions": [
+          {
+            "name": "ApplicationSource",
+            "actionTypeId": {
+              "category": "Source",
+              "owner": "ThirdParty",
+              "provider": "GitHub",
+              "version": "1"
+            },
+            "runOrder": 1,
+            "configuration": {
+              "Branch": "east-1-master",
+              "OAuthToken": "xxx",
+              "Owner": "Jim",
+              "Repo": "EXAMPLE"
+            },
+            "outputArtifacts": [
+              {
+                "name": "EXAMPLE-SourceArtifact"
+              }
+            ],
+            "inputArtifacts": []
+          }
+        ]
+      },
+      {
+        "name": "Build",
+        "actions": [
+          {
+            "name": "PackageExport",
+            "actionTypeId": {
+              "category": "Build",
+              "owner": "AWS",
+              "provider": "CodeBuild",
+              "version": "1"
+            },
+            "runOrder": 1,
+            "configuration": {
+              "ProjectName": "EXAMPLE"
+            },
+            "outputArtifacts": [
+              {
+                "name": "EXAMPLE-BuildArtifact"
+              }
+            ],
+            "inputArtifacts": [
+              {
+                "name": "EXAMPLE-SourceArtifact"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Deploy",
+        "actions": [
+          {
+            "name": "GenerateChangeSet",
+            "actionTypeId": {
+              "category": "Deploy",
+              "owner": "AWS",
+              "provider": "CloudFormation",
+              "version": "1"
+            },
+            "runOrder": 1,
+            "configuration": {
+              "ActionMode": "CHANGE_SET_REPLACE",
+              "Capabilities": "CAPABILITY_IAM",
+              "ChangeSetName": "pipeline-changeset",
+              "ParameterOverrides": "{\"ProjectId\":\"EXAMPLE\", \"Environment\":\"alpha\"}",
+              "RoleArn": "arn:aws:iam::xxx:role/Worker-CloudFormation",
+              "StackName": "EXAMPLE-alpha",
+              "TemplatePath": "EXAMPLE-BuildArtifact::template-export.yml"
+            },
+            "outputArtifacts": [],
+            "inputArtifacts": [
+              {
+                "name": "EXAMPLE-BuildArtifact"
+              }
+            ]
+          },
+          {
+            "name": "ExecuteChangeSet",
+            "actionTypeId": {
+              "category": "Deploy",
+              "owner": "AWS",
+              "provider": "CloudFormation",
+              "version": "1"
+            },
+            "runOrder": 2,
+            "configuration": {
+              "ActionMode": "CHANGE_SET_EXECUTE",
+              "ChangeSetName": "pipeline-changeset",
+              "StackName": "EXAMPLE-alpha"
+            },
+            "outputArtifacts": [],
+            "inputArtifacts": []
+          }
+        ]
+      }
+    ],
+    "version": 1
+  }
+}
+

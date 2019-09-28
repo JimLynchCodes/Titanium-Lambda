@@ -1,8 +1,8 @@
 # Titanium Lambda
 
-_Titanium Lambda_ is a set of guidelines and boilerplate code for building stable, robust, and successful serverless functions. 
-
-<img src="./images/Titanium Lambda Logo.png" width="250" />
+_Titanium Lambda_ is a set of guidelines and boilerplate code for building stable, robust, and successful serverless functions.
+ 
+<img src="./images/Titanium Lambda Logo.png" width="300" />
 
 <hr/>
 
@@ -12,16 +12,19 @@ _Titanium Lambda_ is a set of guidelines and boilerplate code for building stabl
 - Automated developer sugars like easlint, jsdoc, and git hooks.
 - Incorporates Serverless Framework for an alternative quick, convenient deployment. 
 - Solid disaster recovery strategies.
-- Perform regular load testing with Gatling.
+- Steps to perform regular load testing with Gatling.
 - Example project, code, and template files to use as a template.
+- Documentation generator.
+- Automated logs management.
+- Automated "New Lambda" creation.
 
 <hr>
-
 
 ## Example Project
 This project is an example of a project that follows the Titanium Lambda guidelines. This specific lambda function can be accessed as a REST API that you can call using a GET request with the query parameter, "character". The service will then return a json object containing some data about a star wars character corresponding to that number: their name, hair cookie, and eye color. 
 
 Try hitting the live endpoint via putting it in your browser address bar, ajax, curl, postman, or some other REST client!  
+
 
 https://ax7ezyq21m.execute-api.us-east-1.amazonaws.com/Prod?character=1
 
@@ -31,17 +34,22 @@ You can change the value of the _character_ query paramter in the url to an inte
 ## The Meta Project 
 The Star Wars endpoint could be switched out for any asynchronous api (or series / combination of api calls). This is a great example of how to make clean, thoroughly testsed Nodejs microserverices that are performant, efficient, and _actually_ do scale to any amount of traffic all on their own. This project is a tangible manifestation of the teachings of Titanium Lambda.
 
-
 ## Why Titanium Lambda?
-When it comes to working with AWS Lambda, there are't a lot of "enterprise level" tutorials. Many people learn the basics, upload some code right into the web console, and stop there thinking that's all there is to building Lambda functions. It can be tough figuring out how to deploy efficiently, being disciplined enough to write all the various automated tests, and being aware of where to look when things go wrong. You want to step up your serverless game and build robust, legit Lambda functions then this guide is for you.
+When it comes to working with AWS Lambda, there are't a lot of "enterprise level" tutorials. Many people learn the basics, upload some code right into the web console, and stop there thinking that's all there is to building Lambda functions. It can be tough figuring out how to deploy efficiently, being disciplined enough to write all the various automated tests, and being aware of where to look when things go wrong. If you want to step up your serverless game and build robust, legit Lambda functions then this guide is for you.
 
 
 ## What Are We Selling?
 Nothing! Titanium Lambda is totally free to use and is not influenced by commercial interests. Titanium Lambda was a result of Jim Lynch working professionally with the tools, honing his skills, and over time formulating this guide as a way of organizing his thoughts and building somewhat of a "turnkey" development process for his own personal and professional lambda functions. If you like this project, feel free to [tweet to Jim](https://twitter.com/WebWhizJim) and say thanks. :)  
 
+## How To Use The Template Files
 
-## Using a CI / CD Pipeline
-When you are just building a project and have no users you can shoot from the hip, use only one environment, and deploy whatever and whenever you want. However, once you launch (and if you are lucky enough to have some real users) then it becomes a more dangerous game. The stakes are higher and it becomes critical to not push bugs to the users yet keep the same rapid deployment pace. A great way to do this is to use a continuous integration pipeline that is connected to git. It will automatically pick up code when a push or merge occurs on a certain branch, run your tests, create a fresh build, and deploy to a dev environment. Then there should be some manual "big red button" to copy the dev environment build over to production. Since it is already tightly ingrained in the AWS ecosystem and works well with AWS Lambda, the Titanium Lambda official first choice for CI provider is AWS CodePipeline. However, the general guidelines of Titanium Lambda should be transferrable to any other CI platform, and it's more about how you use the pipeline rather than which one in particular ou use. In an effort to prove that you can use more than just CodePipeline, the project includes a configuration file for Travis CI.
+First, make sure you have the aws cli installed. Open up a linux shell and run:
+aws --version
+
+If you don't have it, you can check the docs here of do this:
+`brew install awscli`
+
+You'll need to set up the permissions that are specified in the template files. Specifically, in the template file "codebuild-config.json" change the value of ServiceRole to the arn of a role that you create in the aws console under cloudwatch -> roles. This role needs to have at permissions for basic lambda execution and any additions permissions that your function logic requires.
 
 
 ## The CodeStar Dashboard
@@ -50,8 +58,16 @@ There are various ways of starting your project, but Titanium Lambda recommends 
 You can find the Codestar dashboard for this project[here](https://console.aws.amazon.com/codestar/home?region=us-east-1#/projects/jims-cepsnlm/dashboard). 
 _(Note: You won't be able to acess the codestar dashboard unless specifically given permissions by Jim.)_
 
-<img src="./images/aws-codestar-dashboard.png" width="650" />
+You will also need to set up two more permissions in AWS for the pipeline and deployment configuration. In the file "pipeline-config.json" change the pipeline `roleArn` and the Deploy configuration `RoleArn`. 
 
+(Note: If you we don't have exact examples here or they become outdated, you can always use AWS Codestar to scaffold a new nodejs pipeline and lambda function. You can then see how those AWS permissions are set up are create similar ones).
+
+## Using a CI / CD Pipeline
+When you are just building a project and have no users you can shoot from the hip, use only one environment, and deploy whatever and whenever you want. However, once you launch (and if you are lucky enough to have some real users) then it becomes a more dangerous game. The stakes are higher and it becomes critical to not push bugs to the users yet keep the same rapid deployment pace. A great way to do this is to use a continuous integration pipeline that is connected to git. It will automatically pick up code when a push or merge occurs on a certain branch, run your tests, create a fresh build, and deploy to a dev environment. Then there should be some manual "big red button" to copy the dev environment build over to production. Since it is already tightly ingrained in the AWS ecosystem and works well with AWS Lambda, the Titanium Lambda official first choice for CI provider is AWS CodePipeline. However, the general guidelines of Titanium Lambda should be transferrable to any other CI platform, and it's more about how you use the pipeline rather than which one in particular you use. In an effort to prove that you can use more than just CodePipeline, the project also includes a configuration file for Travis CI (.travis.yml) in addition to the CI Pipeline config file (template.yml).
+
+
+## The CodeStar Starter
+There are various ways of starting your project, but Titanium Lambda recommends using [AWS CodeStar](https://aws.amazon.com/codestar/) which basically sets up CodePipeline for you, provisions some resources, and provides you with a nice dashboard for monitoring your project. Titanium Lambda is an ideaology outside of the specific syntax in the boilerplate code so if one day it gets too old and crusty to actually deploy then you can always just use copy all the files from a codestar scallfold and start applying the Titanium Lambda principles there.
 
 ## For Node.js And Beyond!
 This example project is built around a NodeJS microservice. However, there is no reason to limit the teachings of Titanium Lambda to only NodeJS when they apply pretty much equally well serverless functions written in any language. Indeed, even if you are using AWS CodeStar to scaffold out a microservice for AWS Lambda, in addition to NodeJs you have the option to use ~trash~ ___fine___ languages such as Python and Java.  
@@ -91,7 +107,7 @@ There are a few different ways one can invoke a Lambda function, and each of the
 (ie. query paramters for a GET request, request body for POST, lambda console test event object). 
 
 ## Easy DevOps AWS CodePipeline
-
+ 
 <img src="./images/aws-code-pipeline.png" width="650" />
 
 When you make a project with AWS Codestar, it automatically sets up CodePipeline which is a configurable, flexible build, test, and deploy pipeline to which one can add or remove any number of steps. I think my ideal pipeline steps would look something like this.
@@ -176,6 +192,7 @@ added npm scripts to execute the bdd tests, I have an example feature file that 
 
 When it comes to aws lambda functions, you can quantitatively measure the performance of every execution with two numbers: __max memory used__ and __duration of function execution__. Measuring the performance of aws lambda functions is actually very easy since every execution of your aws lambda function will output these numbers in the cloudwatch logs (and in the aws lambda console if invoking the function from there). I don't currently have an automated script for performance tests like I do for the other automated tests, but to me performance is something to look at, compare, and improve over time as the function is in use.
 
+
 ## Load Tests with Gatling
 For load testing REST endpoints my favorite tool is [Gatling](https://gatling.io/). It's very awesome for a number of reasons:
   - Efficiently uses Akka messages instead of real threads.
@@ -201,11 +218,11 @@ Results will then be output to `/tests/gatling-2.3.1/results`.
  
 This will create a nice little dashboard with charts which you can view by opening the generated index.html file in a browser. The charts will look something like this:
 
-<img src="./images/gatling-charts-1.png" width="650" />
+<img src="./images/gatling-charts-1.png" width="675" />
 
-<img src="./images/gatling-charts-2.png" width="650" />
+<img src="./images/gatling-charts-2.png" width="675" />
 
-<img src="./images/gatling-charts-3.png" width="650" />
+<img src="./images/gatling-charts-3.png" width="675" />
  
 The tests in Gatling are called "simulations", and the simulation files are written in Scala (but don't be afraid of them!).
  
@@ -286,9 +303,18 @@ Realizing that there are issues with the code in your live, production environme
 #### 8) Repeat Steps 1, 2, and 3.
 
 
+## Shepherding The Logs
+When your lambda functions run, the logs get stored in a handy little place within AWS called "Cloudwatch". However, this is quite a bad long-term storage place for you logs because 1. there is a max time duration, after which the logs will be deleted forever, and 2. filling up Cloudwatch with logs gets expensive pretty quickly. For many companies it makes sense to go with the quick and easy solution of hooking up your lambda functions to some SAS offering that will store and analyze your logs, often with extra charting and filtering tools to help you dig deeper into the logs. There are many srevices like this, including [DataDog](https://www.datadoghq.com), [Logz.io](https://logz.io), and [Sum Logic](https://www.sumologic.com). However, if you are more the type of person who would rather do it yourself rather than rely on one of this middleman logs management services, you could always set up another lambda function such that it set to run at some predefinied time interval (such as once each day) that corrals the previous day's logs and places them in a more efficient long term storage place (such as in S3).
+
+## Automating Log Management
+
+By default the logs of AWS Lambda functions get saved to CloudWatch. This is fine at first, but it is not a good long-term solution for storing the logs because it quickly becomes expesive and the logs are deleted after some period of time. That is why you should have a script that periodically copies the logs over to some other storage area (possibly S3). It's definitely possibly to create this script yourself, but there are also many paid services that do this for you and provide a nice UI for viewing and interacting with your logs. Some examples of these services are [Splunk](https://www.splunk.com/en_us/solutions/solution-areas/log-management.html), [Logz.io](https://logz.io/log_management_software_ta), [Sumologic](https://www.sumologic.com/what-is-log-management/), [Papertrail](https://papertrailapp.com/solution/log-management/), [Logzilla](https://www.logzilla.net/), [Dashbird](https://dashbird.io/blog/best-practice-for-logging-lambdas/), and [Data Dog](https://www.datadoghq.com/) just to name a few.
+
+## Can We Just Lambda All The Things?
+Lambda is excellent for request-response style CRUD operations, but it can't do streams or long-running applications. If you applications needs realtime updates to changes in the data then *__you should not use lambda__* for this. Instead, you should something that deals with streams such as [AWS Kinesis](https://aws.amazon.com/kinesis/data-streams/) or [MongoDb ChangeStreams](https://docs.mongodb.com/manual/changeStreams/). For this reason I would say no, most applications should not be built with only aws lambda but rather *__should be built with a combination of serverless functions and realtime streams__*. (Be on the lookout for the Titanium Kinesis Changstreams project!)
+
 ## Why "Titanium"?
 Titanium is one of the densest materials on earth. It has been battle-tested and is used for the most extreme industries such artillery, military, and aerospace. Titanium is also especially recognized for its high strength-to-weight ratio, and it thinks a parrallel can be drawn with Lambda functions as they are meant to be both super powerful / scalable yet very lightweight.
-
 
 ## Official Song
 The official song of the Titanium Lambda project is [Titanium by David Guetta & Sia](https://www.youtube.com/watch?v=JRfuAukYTKg).
@@ -297,11 +323,12 @@ Imagine your Lambdas singing along to the lyrics:
 
   _`♪ You shoot me requests, but I won't fail! I AM TITAAAAANNNNNNIIIIIIIUUUUUUUUUUUMMMM! ♪`_
 
-## Thanks!
+## Thanks!!
 
 Thanks to all the contributors who have helped make this project awesome!
 
 If you are new to this project, feel free to open issues with questions or suggestions. You can also join our [slack group](https://join.slack.com/t/titaniumlambda/shared_invite/enQtMzc2ODQ4ODgyNjI4LTQyYzc4Mzc4Yzg2YmZkZGU2ZGFlMjliNmQ3MmVjYmQwYzkxZGUwZDVlZWNhNTNlODg0NTk2Yzc1YWYyNzliYWQ), and if you like this repo please give it a star! 😉
 
 ## License
-MIT
+MIT 
+ 
