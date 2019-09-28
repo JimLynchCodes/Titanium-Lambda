@@ -1,15 +1,17 @@
 # Titanium Lambda
 
-_Titanium Lambda_ is a set of guidelines and boilerplate code for building stable, robust, and successful serverless functions.
+_Titanium Lambda_ is philosophy, a set of guidelines, and some boilerplate code meant to inspire you to build stable, robust, and successful serverless functions.
  
-<img src="./images/Titanium Lambda Logo.png" width="300" />
+ <p align="center">
+ <img src="./images/Titanium Lambda Logo.png" width="300"/>
+</p>
 
-<hr/>
+<br/>
 
 ### Key Features of Titanium Lambda Projects: 
 - Full CI / CD Pipeline with AWS CodePipeline or Travis CI.
 - Has 4 different types of automated tests written with Mocha + Chai.
-- Automated developer sugars like easlint, jsdoc, and git hooks.
+- Automated developer sugars like eslint, jsdoc, and git hooks.
 - Incorporates Serverless Framework for an alternative quick, convenient deployment. 
 - Solid disaster recovery strategies.
 - Steps to perform regular load testing with Gatling.
@@ -32,14 +34,14 @@ You can change the value of the _character_ query paramter in the url to an inte
 
 
 ## The Meta Project 
-The Star Wars endpoint could be switched out for any asynchronous api (or series / combination of api calls). This is a great example of how to make clean, thoroughly testsed Nodejs microserverices that are performant, efficient, and _actually_ do scale to any amount of traffic all on their own. This project is a tangible manifestation of the teachings of Titanium Lambda.
+The Star Wars endpoint could be switched out for any asynchronous api (or series / combination of api calls / databates interactions / etc). This is a great example of how to make clean, thoroughly testsed Nodejs microserverices that are performant, efficient, and _actually_ do scale to any amount of traffic all on their own. Titanium Lambda is meant to be applicable to _any_ serverless project, the example files here are just one tangible manifestation of the teachings of Titanium Lambda.
 
 ## Why Titanium Lambda?
-When it comes to working with AWS Lambda, there are't a lot of "enterprise level" tutorials. Many people learn the basics, upload some code right into the web console, and stop there thinking that's all there is to building Lambda functions. It can be tough figuring out how to deploy efficiently, being disciplined enough to write all the various automated tests, and being aware of where to look when things go wrong. If you want to step up your serverless game and build robust, legit Lambda functions then this guide is for you.
+When it comes to working with AWS Lambda, there are't a lot of "enterprise level" tutorials. Many people learn the basics, upload some code right into the web console, and stop there thinking that's all there is to building Lambda functions; that they are some type of "cloud toy" rather than the enterprise-level dragon-layer that they are. It can be tough figuring out how to deploy efficiently, being disciplined enough to write all the various automated tests, and being aware of where to look when things go wrong. If you want to step up your serverless game and build robust, legit Lambda functions which work as expected then this guide is for you.
 
 
 ## What Are We Selling?
-Nothing! Titanium Lambda is totally free to use and is not influenced by commercial interests. Titanium Lambda was a result of Jim Lynch working professionally with the tools, honing his skills, and over time formulating this guide as a way of organizing his thoughts and building somewhat of a "turnkey" development process for his own personal and professional lambda functions. If you like this project, feel free to [tweet to Jim](https://twitter.com/WebWhizJim) and say thanks. :)  
+Nothing! Titanium Lambda is totally free to use and is not influenced by commercial interests. Titanium Lambda was a result of Jim Lynch working professionally with the tools, honing his skills, and over time formulating this guide as a way of organizing his thoughts and building somewhat of a "turnkey" development process for his own personal and professional lambda functions. Jim prides himself on being a very, "laid-back perfectionist", and this guide is meant to allow you to run a company or engineering department with many moving parts without being worried and fighting server fires all the time. When Jim discovers awesoem things that work for him he often shares them with the world, and he even created a blog called "Wisdom of Jim" (www.wisdomofjim.com) so that he could share his finding with he world! If you like this project or other things from, feel free to [tweet to Jim](https://twitter.com/WebWhizJim) and say hi! 👋 
 
 ## How To Use The Template Files
 
@@ -70,7 +72,7 @@ When you are just building a project and have no users you can shoot from the hi
 There are various ways of starting your project, but Titanium Lambda recommends using [AWS CodeStar](https://aws.amazon.com/codestar/) which basically sets up CodePipeline for you, provisions some resources, and provides you with a nice dashboard for monitoring your project. Titanium Lambda is an ideaology outside of the specific syntax in the boilerplate code so if one day it gets too old and crusty to actually deploy then you can always just use copy all the files from a codestar scallfold and start applying the Titanium Lambda principles there.
 
 ## For Node.js And Beyond!
-This example project is built around a NodeJS microservice. However, there is no reason to limit the teachings of Titanium Lambda to only NodeJS when they apply pretty much equally well serverless functions written in any language. Indeed, even if you are using AWS CodeStar to scaffold out a microservice for AWS Lambda, in addition to NodeJs you have the option to use ~trash~ ___fine___ languages such as Python and Java.  
+This example project is built around a NodeJS microservice. However, there is no reason to limit the teachings of Titanium Lambda to only NodeJS when they apply pretty much equally well serverless functions written in any language. Indeed, even if you are using AWS CodeStar to scaffold out a microservice for AWS Lambda, in addition to NodeJs you have the option to use ~trash~ ___fine___ languages such as Python or Java.  
 
 <img src="./images/CodeStar-Create-Lambda-Project-Screenshot.png" width="650" />
 
@@ -321,7 +323,7 @@ The official song of the Titanium Lambda project is [Titanium by David Guetta & 
 
 Imagine your Lambdas singing along to the lyrics:
 
-  _`♪ You shoot me requests, but I won't fail! I AM TITAAAAANNNNNNIIIIIIIUUUUUUUUUUUMMMM! ♪`_
+  _`♪ You shoot me requeeeeeeeests, but I won't faaaaaiiiiiil! I AM TITAAAAANNNNNNIIIIIIIUUUUUUUUUUUMMMM! ♪`_
 
 ## Thanks!!
 
