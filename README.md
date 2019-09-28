@@ -2,6 +2,7 @@
 
 _Titanium Lambda_ is philosophy, a set of guidelines, and some boilerplate code meant to inspire you to build stable, robust, and successful serverless functions.
  
+ <br/>
  <p align="center">
  <img src="./images/Titanium Lambda Logo.png" width="300"/>
 </p>
@@ -20,7 +21,7 @@ _Titanium Lambda_ is philosophy, a set of guidelines, and some boilerplate code 
 - Automated logs management.
 - Automated "New Lambda" creation.
 
-<hr>
+<br/>
 
 ## Example Project
 This project is an example of a project that follows the Titanium Lambda guidelines. This specific lambda function can be accessed as a REST API that you can call using a GET request with the query parameter, "character". The service will then return a json object containing some data about a star wars character corresponding to that number: their name, hair cookie, and eye color. 
