@@ -1,6 +1,4 @@
 /**
- *  @author Jim Lynch
- *
  *  This is one one way of testing your lambda function as a whole when it is exposed as a REST endpoint.
  *
  *  With the supertest library we can hook into the express middleware we are using to make it think it is
