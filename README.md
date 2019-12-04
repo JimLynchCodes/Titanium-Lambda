@@ -60,7 +60,6 @@ run lambda locally:
 ```
 npx serverless offline start --port 5001 --stage local --env local
 ```
-test at the endpoint: `https:localhost:5001/xxx
 
 deploy:
 ```
@@ -78,7 +77,7 @@ This project is an example of a project that follows the Titanium Lambda guideli
 Try hitting the live endpoint via putting it in your browser address bar, ajax, curl, postman, or some other REST client!  
 
 
-https://ax7ezyq21m.execute-api.us-east-1.amazonaws.com/Prod?character=1
+_
 
 You can change the value of the _character_ query paramter in the url to an integer between 1 and 10 (other numbers work, but it officially supports 1 through 10). The service then calls out to the [star wars api](https://swapi.co/), parses the result, and returns the character's name, eye color, and hair color.
 
