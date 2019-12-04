@@ -1,9 +1,8 @@
 /**
- *  This is one one way of testing your lambda function as a whole when it is exposed as a REST endpoint.
+ *  This is an example of programmatically testing your lambda function at the REST inteface level.
  *
- *  With the supertest library we can hook into the express middleware we are using to make it think it is
- *  being hit by a real get / post request, etc. These tests DO call out to external services (hence why they are
- *  in the e2e folder).
+ *  In other words, we can use the supertest library we can hook into the express middleware and make it think it is
+ *  being hit with various REST requests. 
  */
 
 'use strict';
