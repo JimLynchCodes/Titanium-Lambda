@@ -23,6 +23,55 @@ _Titanium Lambda_ is philosophy, a set of guidelines, and some boilerplate code 
 
 <br/>
 
+## Quick Usage
+
+clone this repo and go into it:
+```
+git clone git@github.com:JimTheMan/Titanium-Lambda.git
+cd Titanium-Lambda
+```
+
+use node version 8.16 or newer:
+```
+nvm use
+```
+
+install dependencies:
+```
+npm i
+```
+
+run unit tests:
+```
+npm test
+```
+
+run end-to-end tests:
+```
+npm run e2e
+```
+
+Note: to run locallly and deploy you need the serverless framework installed locally:
+```
+npm i -g serverless
+```
+
+run lambda locally:
+```
+npx serverless offline start --port 5001 --stage local --env local
+```
+test at the endpoint: `https:localhost:5001/xxx
+
+deploy:
+```
+npx serverless deploy
+```
+
+note: you will need to have to have configured aws creds in order to deploy:
+```
+aws configure
+```
+
 ## Example Project
 This project is an example of a project that follows the Titanium Lambda guidelines. This specific lambda function can be accessed as a REST API that you can call using a GET request with the query parameter, "character". The service will then return a json object containing some data about a star wars character corresponding to that number: their name, hair cookie, and eye color. 
 

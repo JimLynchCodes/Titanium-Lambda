@@ -12,6 +12,7 @@
     "chai": "^4.1.2",
     "istanbul": "^0.4.5",
     "mocha": "5.0.0",
+    "serverless-offline": "^5.12.1",
     "sinon": "^4.5.0",
     "supertest": "3.0.0",
     "unit.js": "2.0.0"
@@ -20,8 +21,8 @@
     "test": "mocha --recursive tests",
     "test-once": "mocha --recursive tests --exit",
     "test-coverage": "istanbul cover _mocha --recursive tests",
-    "e2e": "mocha --recursive e2e-tests",
-    "e2e-once": "mocha --recursive e2e-tests",
+    "e2e": "mocha --recursive tests/e2e",
+    "e2e-once": "mocha --recursive tests/e2e",
     "load": "./tests/load/gatling-2.3.1/bin/gatling.sh -m -s userEmbedLoadTests.basicRampUpTest",
     "precommit": "npm run test-once && istanbul cover _mocha --recursive tests && npm run e2e-once"
   }

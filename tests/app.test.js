@@ -4,7 +4,7 @@
 
 const supertest = require('supertest');
 const test = require('unit.js');
-const app = require('../app.js');
+const app = require('../app.sw-api-example');
 const sinon = require('sinon');
 const expect = require('chai').expect;
 
