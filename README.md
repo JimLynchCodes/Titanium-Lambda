@@ -76,6 +76,7 @@ This project is an example of a project that follows the Titanium Lambda guideli
 
 Try hitting the live endpoint via putting it in your browser address bar, ajax, curl, postman, or some other REST client!  
 
+https://y4ykxdoou7.execute-api.us-east-1.amazonaws.com/dev?character=1
 
 _
 

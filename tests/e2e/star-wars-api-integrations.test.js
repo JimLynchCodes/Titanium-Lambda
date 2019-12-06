@@ -16,6 +16,7 @@ describe('StarWarsFunctions', function () {
 
     it('should get real Luke skywalker data when calling getCharacterData with the value 1.', () => {
       const swf = new StarWarsFunctions();
+      console.log('running!')
       swf.getCharacterData(1).then(result => {
         return expect(result).to.deep.equal(
           {

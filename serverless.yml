@@ -3,7 +3,7 @@ service: titanium-lambda
 
 provider:
   name: aws
-  runtime: nodejs6.10
+  runtime: nodejs10.x
   memorySize: 512
   timeout: 6
   endpointType: EDGE
@@ -20,6 +20,15 @@ package:
 functions:
   Lambda:
     handler: index.handler
+    events:
+      - http:    
+          path: /
+          method: options
+          cors: true
+      - http:
+          path: /
+          method: get
+          cors: true
 
 plugins:
   - serverless-offline
