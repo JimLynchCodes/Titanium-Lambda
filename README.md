@@ -17,7 +17,7 @@ _Titanium Lambda_ is philosophy, a set of guidelines, and some boilerplate code 
 - Solid disaster recovery strategies.
 - Steps to perform regular load testing with Gatling.
 - Example project, code, and template files to use as a template.
-- Documentation generator.
+- Swagger / OpenAPI Documentation generator.
 - Automated logs management.
 - Automated "New Lambda" creation.
 
