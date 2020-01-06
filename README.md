@@ -1,6 +1,6 @@
 # Titanium Lambda
 
-_Titanium Lambda_ is philosophy, a set of guidelines, and some boilerplate code meant to inspire you to build stable, robust, and successful serverless functions.
+_Titanium Lambda_ is philosophy, a set of guidelines, and some boilerplate code meant to inspire you to build stable, robust, and successful serverless REST APIs.
  
  <br/>
  <p align="center">
