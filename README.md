@@ -122,9 +122,13 @@ When you are just building a project and have no users you can shoot from the hi
 There are various ways of starting your project, but Titanium Lambda recommends using [AWS CodeStar](https://aws.amazon.com/codestar/) which basically sets up CodePipeline for you, provisions some resources, and provides you with a nice dashboard for monitoring your project. Titanium Lambda is an ideaology outside of the specific syntax in the boilerplate code so if one day it gets too old and crusty to actually deploy then you can always just use copy all the files from a codestar scallfold and start applying the Titanium Lambda principles there.
 
 ## For Node.js And Beyond!
-This example project is built around a NodeJS microservice. However, there is no reason to limit the teachings of Titanium Lambda to only NodeJS when they apply pretty much equally well serverless functions written in any language. Indeed, even if you are using AWS CodeStar to scaffold out a microservice for AWS Lambda, in addition to NodeJs you have the option to use ~trash~ ___fine___ languages such as Python or Java.  
+This example project is built around a NodeJS microservice. However, there is no reason to limit the teachings of Titanium Lambda to only NodeJS when they apply pretty much equally well serverless functions written in any language. Indeed, even if you are using AWS CodeStar to scaffold out a microservice for AWS Lambda, in addition to NodeJs you have the option to use other languages such as Python or Java.  
 
 <img src="./images/CodeStar-Create-Lambda-Project-Screenshot.png" width="650" />
+
+## UPDATE (Jan 2020): Even More Languages!
+
+## UPDATE (Jan 2020): Titanium Lambda All The Things?!
 
 ## The Many "App.js" Files
 It is extremely common in the express framework to store the webserver created by express in a variable named _app._
@@ -152,6 +156,36 @@ You will also need to provide your access keys to the AWS cli tool so that serve
 Then you can deploy like this:
 
 `serverless deploy`
+
+## Running Lambdas Locally With Serverless Framework
+The serverless framewor is great for running lambda functions. In fact, there are (at least) two different ways of running your lambda functions locally with the serverless framework. 
+
+### Sls Invoke
+The serverless cli's `invoke` command allows you to run a single execution of one of your lambda functions. This is useful if you want the function to run a single tiem and then exit the process. You can use various flags to control the REST resource type, pass params, cutomize headers, etc. There is no extra configuration / installation necessary to use the invoke command.
+
+Example:
+```
+serverless invoke local -f {function_name} --data '{ "queryStringParameters": {"id":"P50WXIl6PUlonrSH"}}'
+```
+
+### Sls Offline
+The serverless cli's `offline` command allows you  start a local server running that simulates your lambda function being deployed. This is useful if you want test your lambda function from Postman, curl, other locally running tests, etc. In order to use serverless offline you need install the npm library and add it as a plugin in the `serverless.yaml` config file.
+
+Install lib: 
+```
+npm install serverless-offline --save-dev
+```
+
+Add to `serverless.yaml`:
+```
+plugins:
+  - serverless-offline
+```
+
+Then you can start a local server hosting your lambda function at http://localhost:3000 like so:
+```
+sls offline start
+```
 
 ## Handling Args
 There are a few different ways one can invoke a Lambda function, and each of them have their own way of passing in arguments, or input paramters, to your function. Titanium Lambda aims to make this easy on you, the developer, by boiling all these input sources into one variables, `args`, that contains the object of data passed that would be expect.
@@ -296,6 +330,7 @@ It's very interesting to see just how much the response times of a Lambda functi
 
 From the above screenshots we can see that in the first run, when the lambda is "cold", the average response time was 712ms with a worst case of 2331ms. In the second run, only about 10 seconds later, we can see times improve to an average response time of 376ms with an interestingly worse worst case than the first run. In the final run things look even better with an average response of 289ms and a worst case of only 1254. The key thing to remember is that cold lambdas can have some variability with execution duration, and the only way to get "hot" response times all the time is to have an endpoint with a large flow of consistent traffic.
 
+## UPDATE: Avoiding Cold Start Pain
   
 ## Amazon X-ray Performance Analysis 
 With each execution of a lambda function you get the total number of milliseconds for which you were billed, but there's no insight into what what going on during that time. Amazon X-ray is a neat service that shows a visual timeline of what's happening during your function execution so you can see how much time the nodejs engine took to start up, how much time each of your functions take to complete, etc. Note that this protect is not currently up to use aws x-ray, but it would take only a few lines of code to add it. Tools like Gatling are great for telling you if your service is slow but not _why_ it's slow. Once you see that your service is running too slowly, Amazon X-Ray is an excellent tool to allow you to see what functions of your code are taking longest.
@@ -318,6 +353,8 @@ I'm definitely a fan of making your code more readable and easier to understand.
   by AWS CloudFormation to deploy your service to AWS Lambda and Amazon API
   Gateway.
 
+## Use Good REST Naming Convenstions (Plural Node Names)
+When designing your REST APIs it can initially seem appealing to use singular words for the endpoint. For example, 
 
 ## Versioning, Tagging, And Releasing
 It is a very good practice to mark your codebase at different points in timee when you release a new version. This can help tremendously when you want to go back to previous versions, when you have multiple versions in production at once, and when you want to see some history of previous releases. It's pretty straightforward to create a release with git by using the _git tag_ command.
