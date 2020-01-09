@@ -127,8 +127,63 @@ This example project is built around a NodeJS microservice. However, there is no
 <img src="./images/CodeStar-Create-Lambda-Project-Screenshot.png" width="650" />
 
 ## UPDATE (Jan 2020): Even More Languages!
+As of 2020 the serverless world has exploded, and you can find a way to deploy pretty much every modern language under the sun to run in a serverless environment. Just with the serverless cli "create" command alone, all these cloud provider / runtime combinations are supported!
+
+- "aws-clojure-gradle"
+- "aws-clojurescript-gradle"
+- "aws-nodejs"
+- "aws-nodejs-typescript"
+- "aws-alexa-typescript"
+- "aws-nodejs-ecma-script"
+- "aws-python"
+- "aws-python3"
+- "aws-groovy-gradle"
+- "aws-java-maven"
+- "aws-java-gradle"
+- "aws-kotlin-jvm-maven"
+- "aws-kotlin-jvm-gradle"
+- "aws-kotlin-nodejs-gradle"
+- "aws-scala-sbt"
+- "aws-csharp"
+- "aws-fsharp"
+- "aws-go"
+- "aws-go-dep"
+- "aws-go-mod"
+- "aws-ruby"
+- "aws-provided"
+- "tencent-go"
+- "tencent-nodejs"
+- "tencent-python"
+- "tencent-php"
+- "azure-nodejs"
+- "azure-python"
+- "cloudflare-workers"
+- "cloudflare-workers-enterprise"
+- "cloudflare-workers-rust"
+- "fn-nodejs"
+- "fn-go"
+- "google-nodejs" 
+- "google-python"
+- "google-go""kubeless-python"
+- "kubeless-nodejs"
+- "knative-docker"
+- "openwhisk-java-maven"
+- "openwhisk-nodejs"
+- "openwhisk-php"
+- "openwhisk-python"
+- "openwhisk-ruby"
+- "openwhisk-swift"
+- "spotinst-nodejs"
+- "spotinst-python"
+- "spotinst-ruby"
+- "spotinst-java8"
+- "twilio-nodejs"
+- "aliyun-nodejs"
+
 
 ## UPDATE (Jan 2020): Titanium Lambda All The Things?!
+Serverless technology has been applied to virtually every area of computing, and these days you can build almost anything you can imagine without ever needing to spin up your own server. Of course REST APIs can be ported to serverless- that's the example project here! Did you also know though that since [december 2018](https://aws.amazon.com/blogs/compute/announcing-websocket-apis-in-amazon-api-gateway/) AWS lambda also supports websockets?! That's right, massively scalable socket servers can be built as just one little lambda function, and the serverless framework has done a great job of configuring websockets with a [flexibile yet simple websocket API](https://serverless.com/blog/api-gateway-websockets-support/) in the project's `serverless.yaml` file. Also, frontend websites and webapps can be hosted serverlessly with just the finished static files in an S3 bucket with a few additional configurations for how you'd like it to be hosted.
+
 
 ## The Many "App.js" Files
 It is extremely common in the express framework to store the webserver created by express in a variable named _app._
@@ -372,6 +427,7 @@ At one time github had this nice little box in the margin on the "releases" page
 Realizing that there are issues with the code in your live, production environment is never fun, but it can happen to anyone. Instead of sheepily praying that it will never happen to you we recommend preparing for this situation early so you will know exactly what to do and (hopefully) won't be franticly scrambling in the heat of the moment. So, let's suppose a user / business analyst / tester / CEO of your company says they think there is an issue with your Lambda function. What to you do?
 
 #### 1) Recreate / Confirm the Issue.
+The engineer attempting to tackle the prblem should first ensure he or she properly understands the problem and what is the desired outcome. Talking to the initial reporter is ideal, but also talking about the problem with other team members who have context on the subject is also ususally helpful. 
 
 #### 2) Check the Lambda Console Metrics & Graphs (Especially _Errors_ & _Duration_).
 
@@ -380,16 +436,19 @@ Realizing that there are issues with the code in your live, production environme
 <img src="./images/cloudwatch-metrics-chart.png" width="600" />
 
 #### 3) Check the Logs.
+Go back and look through the logs at the time for Errors or anything out of the ordinary. Posibly temporarily add more logging in an attempt to expose the root cause.
 
 #### 4) Rollback Endpoints in API Gateway (if necessary).
+Use the versions / aliases feature of AWS lambda in order to have AWS store previous versions and make rollbacks easier. Of course, rollbacks can also be done by pushing the previous state of code through CI until it hits production, but the correction is not as immediate as rolling back via the versions / aliases method.
 
 #### 5) Determine If Automated Tests For The Issue Can Be Added.
+Ideally, we can writes new automated tests for our system that fail because of the bug. Then when we path the root cause of the issue, the tests describing behavior properly should pass. This may take some back and forth to get things right, and that's fine. The key is writing tests that expose the bug in all cases because then it can fixed once and for all, with the automated tests providing a safeguard against regressions in the application where that same bug appears again. This, "right automates tests that perfectly expose the bug" is much easier to say than it is to do, and indeed it is the key to being a good tests automation engineer. Take breaks often and try to approach things from a different angle if you are spinning your wheels without getting anywhere, but don't get frustrated and don't give up!
 
 #### 6) Make Changes, Run Tests, Verify Stable Staging Environment.
-
-#### 7) Push Fixes to Prod.
+Once the patch has been made, run the various tests, linters, and git hooks, push the code to CI and through the various environments (once passing the proper checkpoints of course) until it is in production. Once it is fixed, in production, and securely banished from the app with effectivel unit tests, the team can finaly breathe a sigh of relief and congratualte each other with a small celebration in account on of this unanimous win for the develpment team, users, and all other stakeholders.
 
 #### 8) Repeat Steps 1, 2, and 3.
+Now that this bug has been taken care of and the celebrations are over, the team can move on to trouble-shooting another bug in a similar manner or go on to create new features (which, if written in TDD style, are also done in a pretty similar manner). 
 
 
 ## Shepherding The Logs
