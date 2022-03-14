@@ -335,6 +335,7 @@ When it comes to aws lambda functions, you can quantitatively measure the perfor
 
 
 ## Load Tests with Gatling
+
 For load testing REST endpoints my favorite tool is [Gatling](https://gatling.io/). It's very awesome for a number of reasons:
   - Efficiently uses Akka messages instead of real threads.
   - Has a clean, succinct DSL to describe your load tests.
